@@ -169,7 +169,7 @@
 
       <div class="post-meta">
         <time itemprop="dateCreated"
-              datetime="2021-11-23T13:31:00+08:00"
+              datetime="2021-11-23T15:57:55+08:00"
               content="2021-11-23">
           11-23
         </time>
@@ -312,6 +312,14 @@
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/chenpercy" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;chenpercy" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:abc2344666@gmail.com" title="E-Mail → mailto:abc2344666@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
 
 
 
@@ -388,6 +396,19 @@
 
 
 
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
 
 
   
