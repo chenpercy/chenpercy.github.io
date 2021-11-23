@@ -21,33 +21,31 @@
     var CONFIG = {"hostname":"chenpercy.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="掃描部的原理 － 利用封包來分析目的電腦的回應，以得到目的電腦的port資訊以及系統內的弱點資訊 相關工具如下 , eg:    SuperScan － 透過輸入IP位址來掃描範圍內電腦或是特定ip位址來掃描該位址匹配的目的地電腦port。   Xscan － 擁有除了指定IP範圍內所有的正在運行中的電腦以及它們開放的port 、漏洞等資訊，並在最後顯示檢測結果。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="掃描目的主機的port">
-<meta property="og:url" content="https://chenpercy.github.io/2015/01/23/%E6%8E%83%E6%8F%8F%E7%9B%AE%E7%9A%84%E4%B8%BB%E6%A9%9F%E7%9A%84port/index.html">
+  <meta name="description" content="Share Engineer, Game and Music with u ^_^">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Percy&#39;s blog">
+<meta property="og:url" content="https://chenpercy.github.io/page/3/index.html">
 <meta property="og:site_name" content="Percy&#39;s blog">
-<meta property="og:description" content="掃描部的原理 － 利用封包來分析目的電腦的回應，以得到目的電腦的port資訊以及系統內的弱點資訊 相關工具如下 , eg:    SuperScan － 透過輸入IP位址來掃描範圍內電腦或是特定ip位址來掃描該位址匹配的目的地電腦port。   Xscan － 擁有除了指定IP範圍內所有的正在運行中的電腦以及它們開放的port 、漏洞等資訊，並在最後顯示檢測結果。">
+<meta property="og:description" content="Share Engineer, Game and Music with u ^_^">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2015-01-23T03:45:15.000Z">
-<meta property="article:modified_time" content="2021-11-23T07:07:45.640Z">
 <meta property="article:author" content="Percy Chen">
-<meta property="article:tag" content="Internet">
+<meta property="article:tag" content="Engineer,Game,Music">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://chenpercy.github.io/2015/01/23/%E6%8E%83%E6%8F%8F%E7%9B%AE%E7%9A%84%E4%B8%BB%E6%A9%9F%E7%9A%84port/">
+<link rel="canonical" href="https://chenpercy.github.io/page/3/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : false,
-    isPost : true,
+    isHome : true,
+    isPost : false,
     lang   : 'en'
   };
 </script>
 
-  <title>掃描目的主機的port | Percy's blog</title>
+  <title>Percy's blog</title>
   
 
 
@@ -150,10 +148,90 @@
         <div class="content-wrap">
           
 
-          <div class="content post posts-expand">
+          <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://chenpercy.github.io/2015/01/28/windows-%E7%B3%BB%E7%B5%B1%E6%BC%8F%E6%B4%9E/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Percy Chen">
+      <meta itemprop="description" content="Share Engineer, Game and Music with u ^_^">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Percy's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2015/01/28/windows-%E7%B3%BB%E7%B5%B1%E6%BC%8F%E6%B4%9E/" class="post-title-link" itemprop="url">Windows 系統漏洞</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2015-01-28 21:50:41" itemprop="dateCreated datePublished" datetime="2015-01-28T21:50:41+08:00">2015-01-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-11-23 15:07:45" itemprop="dateModified" datetime="2021-11-23T15:07:45+08:00">2021-11-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Application/" itemprop="url" rel="index"><span itemprop="name">Application</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
 
     
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Windows 系統漏洞產生原因有兩種  **:   ** **1.**技術人員的缺陷  **(人為因素) Eg:**編寫作業程式為了方便測試導致最後忘記處理掉而留下的後門。 **2.**硬體本身的設計缺陷及不相容性 **(硬體因素) Eg:**硬體存在者設計缺陷，或是各硬體間的不相容所導致，往往在使用軟體後呈現出來，像是 :藍屏、當機等現象。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2015/01/28/windows-%E7%B3%BB%E7%B5%B1%E6%BC%8F%E6%B4%9E/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
@@ -169,9 +247,10 @@
       <meta itemprop="name" content="Percy's blog">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          掃描目的主機的port
-        </h1>
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2015/01/23/%E6%8E%83%E6%8F%8F%E7%9B%AE%E7%9A%84%E4%B8%BB%E6%A9%9F%E7%9A%84port/" class="post-title-link" itemprop="url">掃描目的主機的port</a>
+        </h2>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -210,66 +289,198 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>掃描部的原理 － 利用封包來分析目的電腦的回應，以得到目的電腦的port資訊以及系統內的弱點資訊</p>
+          <p>掃描部的原理 － 利用封包來分析目的電腦的回應，以得到目的電腦的port資訊以及系統內的弱點資訊</p>
 <p>相關工具如下 , eg:</p>
 <ul>
 <li>  SuperScan － 透過輸入IP位址來掃描範圍內電腦或是特定ip位址來掃描該位址匹配的目的地電腦port。</li>
-<li>  Xscan － 擁有除了指定IP範圍內所有的正在運行中的電腦以及它們開放的port 、漏洞等資訊，並在最後顯示檢測結果。<span id="more"></span></li>
-<li><em>Sniffer原理</em>*  嗅探網路中流經的封包</li>
-</ul>
-<p>Sniffer 是封包擷取工具之一，並可對抓到的封包進行分析。在安裝Sniffer後，它能讓電腦接收所有到達本地host的封包，來進行監聽，以便找出網路阻塞原因or當成偵錯工具。需要釐清的一點是，Sniffer並不會告訴使用者「問題究竟是什麼」，反而是告訴使用者「究竟發生什麼事」，剩下的事情便是我們使用者要來解決的</p>
-<p>常用的嗅探器 , eg:Sniffer Pro 、Effe Tech HTTP Sniffer 以及 CaptureNet</p>
-<p>Sniffer Pro  :</p>
-<ul>
-<li>  捕獲網路封包並進行詳細分析。</li>
-<li>  利用分析系統診斷問題。</li>
-<li>  即時監控網路活動。</li>
-<li>  收集網路利用率及錯誤…等等。</li>
-</ul>
-<p>Effe Tech HTTP Sniffer :</p>
-<p>屬於HTTP的嗅探器，能夠擷取區網中含有HTTP的IP資料封包，可以用來查看區網中的使用者瀏覽哪些網頁及內容，能用在主管監控員工的上網情形。</p>
-<p>防範port掃描的常見方式 :</p>
-<ol>
-<li> 關閉閒置和有潛在威脅的port : 將所有使用者使用到的port以外的其它port都關閉掉。</li>
-<li> 利用網路防火牆遮罩有掃描症狀的port : 首先檢查每個到達本地電腦的封包，在該封包被系統中任何軟體識別前，防火牆可以拒絕接收該封包。</li>
-</ol>
-<p>防範嗅探的常見方式 : 在網路中發現嗅探是比較不容易的，因為它幾乎不會留下任何痕跡，但是可以採取一些方法來防範嗅探</p>
-<ol>
-<li> 對傳輸的資料進行加密 : 對即將要傳輸的資料進行加密，即使資料被其他人嗅探，沒有解密密碼也無法得到可利用的資訊。傳統傳輸資訊並未經過加密，也就是已明文的方式進行傳輸。</li>
-<li> 採用安全拓樸結構降低嗅探收集的資訊 : 利用將網段細分的方式，讓嗅探器能夠接收的資料就越少，eg: switch、router and bridge ， 像是利用交換機設定VLAN能避免資料的廣播，避免網路中任一台host or server接收到任何不相關的資料。</li>
-</ol>
-
+<li>  Xscan － 擁有除了指定IP範圍內所有的正在運行中的電腦以及它們開放的port 、漏洞等資訊，並在最後顯示檢測結果。
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2015/01/23/%E6%8E%83%E6%8F%8F%E7%9B%AE%E7%9A%84%E4%B8%BB%E6%A9%9F%E7%9A%84port/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
     </div>
 
     
     
     
-
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Internet/" rel="tag"># Internet</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2015/01/23/dos-%E6%8C%87%E4%BB%A4-to-be-continue/" rel="prev" title="DOS 指令 (To Be Continue...)">
-      <i class="fa fa-chevron-left"></i> DOS 指令 (To Be Continue...)
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2015/01/28/windows-%E7%B3%BB%E7%B5%B1%E6%BC%8F%E6%B4%9E/" rel="next" title="Windows 系統漏洞">
-      Windows 系統漏洞 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
+        <div class="post-eof"></div>
       </footer>
-    
   </article>
   
   
   
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://chenpercy.github.io/2015/01/23/dos-%E6%8C%87%E4%BB%A4-to-be-continue/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Percy Chen">
+      <meta itemprop="description" content="Share Engineer, Game and Music with u ^_^">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Percy's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2015/01/23/dos-%E6%8C%87%E4%BB%A4-to-be-continue/" class="post-title-link" itemprop="url">DOS 指令 (To Be Continue...)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2015-01-23 00:03:08" itemprop="dateCreated datePublished" datetime="2015-01-23T00:03:08+08:00">2015-01-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-11-23 15:07:45" itemprop="dateModified" datetime="2021-11-23T15:07:45+08:00">2021-11-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%AA%E5%88%86%E9%A1%9E/" itemprop="url" rel="index"><span itemprop="name">未分類</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>  Ping －測試是否接入網路　→　　Ping  網址 or IP位址。
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2015/01/23/dos-%E6%8C%87%E4%BB%A4-to-be-continue/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://chenpercy.github.io/2015/01/22/internet-applicationtechnique/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Percy Chen">
+      <meta itemprop="description" content="Share Engineer, Game and Music with u ^_^">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Percy's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2015/01/22/internet-applicationtechnique/" class="post-title-link" itemprop="url">Internet ApplicationTechnique</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2015-01-22 17:50:25" itemprop="dateCreated datePublished" datetime="2015-01-22T17:50:25+08:00">2015-01-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-11-23 15:07:45" itemprop="dateModified" datetime="2021-11-23T15:07:45+08:00">2021-11-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Application/" itemprop="url" rel="index"><span itemprop="name">Application</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>  TCP/IP－又稱網路通訊協定 , 是電腦接入網路最基本的協定,TCP/IP定義了電腦如何連入Internet,以及資料如何在它們之間傳輸的協定,TCP協定負責收集資訊or把檔案拆分成更小的資料封包,低層的IP協定處理每個資料封包的位址。</li>
+<li>  ARP－又稱位址通訊協定 , 能透過已知的IP位址來取得對應的實體(MAC)位址,也就是主機在發送封包之前將目標主機的IP位址轉換成與之對應的MAC位址的過程。</li>
+<li>  ICMP－又稱控制封包協定,屬於TCP/IP的一個子協定,用於IP host、router 之間傳遞<strong>控制訊息</strong>,它的功能是要<strong>報告問題</strong>而不是解決問題。因為這一個特點使他容易受到 eg: 「Ping of Death」 攻擊。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
 
 
 
