@@ -20,20 +20,22 @@
     var CONFIG = {"hostname":"chenpercy.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="Users &amp; Groups  全名是 Identity and Access Management，是 AWS 的一個 Global Service  在 AWS 所創建的帳戶都是一個 Root account  一個 Account 底下可以有多個 Group  Group 可以包涵多個 User  User 可以隸屬於很多個 Group，也可以不隸屬於任何一個 Group   Per">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://chenpercy.github.io/2021/11/23/hello-world/index.html">
+<meta property="og:title" content="AWS 學習紀錄 Part2 - IAM">
+<meta property="og:url" content="https://chenpercy.github.io/2021/10/15/aws-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-part2-iam/index.html">
 <meta property="og:site_name" content="Percy&#39;s blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="Users &amp; Groups  全名是 Identity and Access Management，是 AWS 的一個 Global Service  在 AWS 所創建的帳戶都是一個 Root account  一個 Account 底下可以有多個 Group  Group 可以包涵多個 User  User 可以隸屬於很多個 Group，也可以不隸屬於任何一個 Group   Per">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-11-23T05:31:00.513Z">
-<meta property="article:modified_time" content="2021-11-23T05:31:00.513Z">
+<meta property="og:image" content="https://docs.aws.amazon.com/IAM/latest/UserGuide/images/Relationship_Between_Entities_Example.diagram.png">
+<meta property="article:published_time" content="2021-10-15T08:42:16.000Z">
+<meta property="article:modified_time" content="2021-11-23T07:07:45.689Z">
 <meta property="article:author" content="Percy Chen">
 <meta property="article:tag" content="Engineer,Game,Music">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://docs.aws.amazon.com/IAM/latest/UserGuide/images/Relationship_Between_Entities_Example.diagram.png">
 
-<link rel="canonical" href="https://chenpercy.github.io/2021/11/23/hello-world/">
+<link rel="canonical" href="https://chenpercy.github.io/2021/10/15/aws-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-part2-iam/">
 
 
 <script id="page-configurations">
@@ -46,7 +48,7 @@
   };
 </script>
 
-  <title>Hello World | Percy's blog</title>
+  <title>AWS 學習紀錄 Part2 - IAM | Percy's blog</title>
   
 
 
@@ -156,7 +158,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://chenpercy.github.io/2021/11/23/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://chenpercy.github.io/2021/10/15/aws-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-part2-iam/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -169,7 +171,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hello World
+          AWS 學習紀錄 Part2 - IAM
         </h1>
 
         <div class="post-meta">
@@ -179,7 +181,23 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2021-11-23 13:31:00" itemprop="dateCreated datePublished" datetime="2021-11-23T13:31:00+08:00">2021-11-23</time>
+              <time title="Created: 2021-10-15 16:42:16" itemprop="dateCreated datePublished" datetime="2021-10-15T16:42:16+08:00">2021-10-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-11-23 15:07:45" itemprop="dateModified" datetime="2021-11-23T15:07:45+08:00">2021-11-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AWS/" itemprop="url" rel="index"><span itemprop="name">AWS</span></a>
+                </span>
             </span>
 
           
@@ -193,19 +211,76 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+        <h3 id="Users-amp-Groups"><a href="#Users-amp-Groups" class="headerlink" title="Users &amp; Groups"></a>Users &amp; Groups</h3><ol>
+<li> 全名是 Identity and Access Management，是 AWS 的一個 Global Service</li>
+<li> 在 AWS 所創建的帳戶都是一個 Root account</li>
+<li> 一個 Account 底下可以有多個 Group</li>
+<li> Group 可以包涵多個 User</li>
+<li> User 可以隸屬於很多個 Group，也可以不隸屬於任何一個 Group</li>
+</ol>
+<p><img src="https://docs.aws.amazon.com/IAM/latest/UserGuide/images/Relationship_Between_Entities_Example.diagram.png" alt="
+      Example of relationship between AWS accounts, users, and user groups
+    "></p>
+<h3 id="Permission"><a href="#Permission" class="headerlink" title="Permission"></a>Permission</h3><p>在 AWS 中應遵循著<strong>最小權限原則</strong> (Least privilege principle)，僅提供使用者足夠的權限即可。</p>
+<p>可以透過 JSON 文件來定義 Policy，言下之意就是，Policy 定義了 User 及 Group 在這個 account 底下能做哪些事情，以下面的範例來說，使用者被允許列出 EC2 相關的資源。</p>
+<p>{<br>    “Version”: “2012-10-17”,<br>    “Statement”: [<br>        {<br>            “Sid”: “VisualEditor0”,<br>            “Effect”: “Allow”,<br>            “Action”: [<br>                “ec2:Describe*“<br>            ],<br>            “Resource”: “*“<br>        }<br>    ]<br>}</p>
+<p>Policy Structure由以下的內容所組成</p>
+<ol>
+<li> Version: Policy 版本</li>
+<li> Id: Policy 識別碼(非必填)</li>
+<li>Statement: 描述 policy 的內容，其中包含一個或是多個陳述句<ul>
+<li>  Sid: 識別碼</li>
+<li>  Effect: 存取狀態(允許 Allow, 拒絕 denied)</li>
+<li>  Action: 資源對象被允許的動作(S3 or EC2)</li>
+<li>  Principal: 針對哪些 account/user/role</li>
+<li>  Resource: 針對哪些資源</li>
+<li>  Condition: 成立的條件(可選)</li>
+</ul>
+</li>
+</ol>
+<h3 id="Defense-Mechanisms"><a href="#Defense-Mechanisms" class="headerlink" title="Defense Mechanisms"></a>Defense Mechanisms</h3><p>保護使用者資料的方法有兩種機制，分別是 Password Policy 及 Multi Factor Authentication (MFA)。</p>
+<h4 id="Password-Policy"><a href="#Password-Policy" class="headerlink" title="Password Policy"></a>Password Policy</h4><p>設定 Password Policy 來增加密碼的強度，密碼越強，安全度越高。</p>
+<p>比方說</p>
+<ol>
+<li> 最小長度</li>
+<li>符合特定條件<ul>
+<li>  大寫字母</li>
+<li>  小寫字母</li>
+<li>  數字</li>
+<li>  非英文字母(特殊符號) E.g. <strong>!</strong> or <strong>@</strong></li>
+</ul>
+</li>
+<li> 允許 IAM 使用者更改密碼</li>
+<li> 密碼有效期限</li>
+</ol>
+<h4 id="MFA"><a href="#MFA" class="headerlink" title="MFA"></a>MFA</h4><p>這個機制是由 Password 及 Security Device you own (E.g. 自己的手機) 所構成。這個機制的產物有以下這些</p>
+<ol>
+<li>Virtual MFA device<ul>
+<li>  Google Authenticator (phone-only)</li>
+<li>  Authy (multi-device)</li>
+</ul>
+</li>
+<li> Universal 2nd Factor (U2F) Security Key</li>
+<li> Hardware Key Fob MFA device</li>
+</ol>
+<h3 id="Role"><a href="#Role" class="headerlink" title="Role"></a>Role</h3><p>待補充</p>
+<h3 id="Security-Tools"><a href="#Security-Tools" class="headerlink" title="Security Tools"></a>Security Tools</h3><ol>
+<li> IAM Credentials Report (account-level)</li>
+<li> IAM Access Advisor (user-level): 顯示這些資源最後被使用的時間，進一步移除不常使用的服務，已達到最小權限的原則</li>
+</ol>
+<h2 id="Takeways"><a href="#Takeways" class="headerlink" title="Takeways"></a>Takeways</h2><ol>
+<li> 除了建立 AWS account，否則不要使用 root account</li>
+<li> 一個 Group 可以有多個使用者，並指派特定的權限給這些 Group</li>
+<li> 建立 Password Policy</li>
+<li> 使用 MFA</li>
+<li> 建立角色以便於提供使用 AWS Service 的權限</li>
+<li> 使用 access key 供程式開發</li>
+<li> 透過 Credential Report 來稽核帳戶的權限</li>
+<li> 不要外洩 IAM Users &amp; Access Key</li>
+</ol>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li> <a target="_blank" rel="noopener" href="https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c02/">Ultimate AWS Certified Solutions Architect Associate 2021</a></li>
+</ol>
 
     </div>
 
@@ -221,10 +296,13 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/11/16/aws-networking-vpc/" rel="prev" title="AWS Networking - VPC">
-      <i class="fa fa-chevron-left"></i> AWS Networking - VPC
+    <a href="/2021/10/14/aws-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-part1/" rel="prev" title="AWS 學習紀錄 Part1">
+      <i class="fa fa-chevron-left"></i> AWS 學習紀錄 Part1
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/10/19/aws-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-part3-ec2/" rel="next" title="AWS 學習紀錄 Part3 – EC2">
+      AWS 學習紀錄 Part3 – EC2 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -283,7 +361,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Users-amp-Groups"><span class="nav-number">1.</span> <span class="nav-text">Users &amp; Groups</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Permission"><span class="nav-number">2.</span> <span class="nav-text">Permission</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Defense-Mechanisms"><span class="nav-number">3.</span> <span class="nav-text">Defense Mechanisms</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Password-Policy"><span class="nav-number">3.1.</span> <span class="nav-text">Password Policy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MFA"><span class="nav-number">3.2.</span> <span class="nav-text">MFA</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Role"><span class="nav-number">4.</span> <span class="nav-text">Role</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Security-Tools"><span class="nav-number">5.</span> <span class="nav-text">Security Tools</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Takeways"><span class="nav-number"></span> <span class="nav-text">Takeways</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number"></span> <span class="nav-text">Reference</span></a></div>
       </div>
       <!--/noindex-->
 

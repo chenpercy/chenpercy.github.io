@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"chenpercy.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="這篇文章是出自於線上課程 Ultimate AWS Certified Solutions Architect Associate 的所記錄的筆記。 CIDR - IPv4全名是 Classless Inter-Domain Routing，是一種用來表示 IP Address 的方法，也常被使用在 Security Group 或是 networking，其中包含兩個部分。    Base IP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AWS Networking - VPC">
+<meta property="og:url" content="https://chenpercy.github.io/2021/11/16/aws-networking-vpc/index.html">
+<meta property="og:site_name" content="Percy&#39;s blog">
+<meta property="og:description" content="這篇文章是出自於線上課程 Ultimate AWS Certified Solutions Architect Associate 的所記錄的筆記。 CIDR - IPv4全名是 Classless Inter-Domain Routing，是一種用來表示 IP Address 的方法，也常被使用在 Security Group 或是 networking，其中包含兩個部分。    Base IP">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://paletee.files.wordpress.com/2021/11/image-4.png?w=1024">
+<meta property="og:image" content="https://paletee.files.wordpress.com/2021/11/image-5.png?w=618">
+<meta property="og:image" content="https://paletee.files.wordpress.com/2021/11/image-6.png?w=778">
+<meta property="og:image" content="https://paletee.files.wordpress.com/2021/11/image-7.png?w=1024">
+<meta property="og:image" content="https://paletee.files.wordpress.com/2021/11/image-8.png?w=1024">
+<meta property="og:image" content="https://paletee.files.wordpress.com/2021/11/image-9.png?w=1024">
+<meta property="og:image" content="https://paletee.files.wordpress.com/2021/11/image-11.png?w=1024">
+<meta property="og:image" content="https://paletee.files.wordpress.com/2021/11/image-10.png?w=1024">
+<meta property="og:image" content="https://paletee.files.wordpress.com/2021/11/image-12.png?w=620">
+<meta property="og:image" content="https://paletee.files.wordpress.com/2021/11/image-13.png?w=814">
+<meta property="og:image" content="https://paletee.files.wordpress.com/2021/11/image-15.png?w=716">
+<meta property="og:image" content="https://paletee.files.wordpress.com/2021/11/image-16.png?w=904">
+<meta property="og:image" content="https://paletee.files.wordpress.com/2021/11/image-17.png?w=898">
+<meta property="og:image" content="https://paletee.files.wordpress.com/2021/11/image-18.png?w=1024">
+<meta property="og:image" content="https://paletee.files.wordpress.com/2021/11/image-20.png?w=1024">
+<meta property="og:image" content="https://paletee.files.wordpress.com/2021/11/image-22.png?w=884">
+<meta property="og:image" content="https://paletee.files.wordpress.com/2021/11/image-21.png?w=1024">
+<meta property="og:image" content="https://paletee.files.wordpress.com/2021/11/image-24.png?w=826">
+<meta property="article:published_time" content="2021-11-16T09:29:09.000Z">
+<meta property="article:modified_time" content="2021-11-23T07:07:45.768Z">
+<meta property="article:author" content="Percy Chen">
+<meta property="article:tag" content="Engineer,Game,Music">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://paletee.files.wordpress.com/2021/11/image-4.png?w=1024">
+
+<link rel="canonical" href="https://chenpercy.github.io/2021/11/16/aws-networking-vpc/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>AWS Networking - VPC | Percy's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Percy's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://chenpercy.github.io/2021/11/16/aws-networking-vpc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Percy Chen">
+      <meta itemprop="description" content="Share Engineer, Game and Music with u ^_^">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Percy's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          AWS Networking - VPC
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-11-16 17:29:09" itemprop="dateCreated datePublished" datetime="2021-11-16T17:29:09+08:00">2021-11-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-11-23 15:07:45" itemprop="dateModified" datetime="2021-11-23T15:07:45+08:00">2021-11-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AWS/" itemprop="url" rel="index"><span itemprop="name">AWS</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>這篇文章是出自於線上課程 <a target="_blank" rel="noopener" href="https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c02/">Ultimate AWS Certified Solutions Architect Associate</a> 的所記錄的筆記。</p>
+<h2 id="CIDR-IPv4"><a href="#CIDR-IPv4" class="headerlink" title="CIDR - IPv4"></a>CIDR - IPv4</h2><p>全名是 Classless Inter-Domain Routing，是一種用來表示 IP Address 的方法，也常被使用在 Security Group 或是 networking，其中包含兩個部分。</p>
+<ul>
+<li>  Base IP - 包含在這個 range 的 IP (X.X.X.X)</li>
+<li>  Subnet Mask - IP 中有多少 bits 可以轉換</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://paletee.files.wordpress.com/2021/11/image-4.png"><img src="https://paletee.files.wordpress.com/2021/11/image-4.png?w=1024"></a></p>
+<p>以 192.168.0.0 為例</p>
+<p>在 IPv4 中，為了避免 IP 被消耗殆盡，故有區分 Public IP 及 Private IP 能夠使用的範圍，故 Private IP 能使用的範圍，根據分級可以分成</p>
+<ul>
+<li>  Class A: 10.0.0.0 - 10.255.255.255</li>
+<li>  Class B: 172.16.0.0 - 172.31.255.255</li>
+<li>  Class C: 192.168.0.0 - 192.168.255.255</li>
+</ul>
+<h2 id="VPC"><a href="#VPC" class="headerlink" title="VPC"></a>VPC</h2><p>全名是 Virtual Private Cloud，在 AWS 服務底下</p>
+<ul>
+<li>  每個 region 最多有 5 個 VPC (在 soft limit 之下)</li>
+<li>  每個 VPC 最多有 5 個 CIDR ( CIDR size between 16 ~ 28 )</li>
+<li>  VPC 是私有的，故私有 IPv4 範圍之內才允許使用</li>
+</ul>
+<p>AWS 在每一個 subnet 中會保留 5 個 IP Address (前面四個 + 後面一個)</p>
+<p>E.g. 10.0.0.0/24</p>
+<p>被保留的 IP Address 如下</p>
+<ul>
+<li>  10.0.0.0 - Network Address</li>
+<li>  10.0.0.1 - VPC router</li>
+<li>  10.0.0.2 - Amazon-provided DNS</li>
+<li>  10.0.0.3 - future use</li>
+<li>  10.0.0.255 - broadcast address</li>
+</ul>
+<p>也就是說，假如今天需要 30 個 IP Addresses 供 EC2 使用，使用的 27 bits 的子網域是不夠的( 27 bits 只有 32 個 IP Addresses，但必須要保留五個，故實際上能使用的只有 27 個 (32 - 5 = 27 &lt; 30) )</p>
+<h2 id="Internet-Gateway-IGW"><a href="#Internet-Gateway-IGW" class="headerlink" title="Internet Gateway (IGW)"></a>Internet Gateway (IGW)</h2><ul>
+<li>  讓 VPC 底下的資源，E.g. EC2，具備連線到網路的能力</li>
+<li>  一個 VPC 只能與一個 IGW 連接</li>
+</ul>
+<h2 id="Bastion-Hosts"><a href="#Bastion-Hosts" class="headerlink" title="Bastion Hosts"></a>Bastion Hosts</h2><p>當資源是建立在 Private Subnet 時，透過建立在 Public Subnet 的 EC2 (i.e. bastion hosts) 當作管道的方式連線到這些資源，搭配 Security Group 的方式限制允許存取 Private Subnet 的 EC2。</p>
+<p><a target="_blank" rel="noopener" href="https://paletee.files.wordpress.com/2021/11/image-5.png"><img src="https://paletee.files.wordpress.com/2021/11/image-5.png?w=618"></a></p>
+<p>Bastion Hosts</p>
+<h2 id="NAT-instance"><a href="#NAT-instance" class="headerlink" title="NAT instance"></a>NAT instance</h2><ul>
+<li>  NAT 的全名是 <strong>N</strong>etwork <strong>A</strong>ddress <strong>T</strong>ranslation，是一種重寫 IP 封包的來源位址的技術</li>
+<li>  讓 Private Network 具備連線到網路的能力</li>
+<li>  必須要在 Public Network 才能被啟用</li>
+<li>  必須停用 EC2 Source/Destination Check</li>
+<li>  必須綁定 Elastic IP</li>
+<li>  必須將 Private subnet 與 NAT 設定在 route table</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://paletee.files.wordpress.com/2021/11/image-6.png"><img src="https://paletee.files.wordpress.com/2021/11/image-6.png?w=778"></a></p>
+<p>NAT Instance</p>
+<p>但是現在 NAT instance 已經被 NAT Gateway 所取代，主要是因為</p>
+<ol>
+<li> 可用性較低</li>
+<li> 即時使用的彈性較低</li>
+<li> 網路流量是根據 EC2 instance type</li>
+<li> 必須自行管理 Security Groups &amp; rules</li>
+</ol>
+<h2 id="NAT-Gateway"><a href="#NAT-Gateway" class="headerlink" title="NAT Gateway"></a>NAT Gateway</h2><ul>
+<li>  AWS 自家管理的 NAT</li>
+<li>  建立在一個特定的 AZ 底下</li>
+<li>  不能建立在與 EC2 同一個 subnet 底下</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://paletee.files.wordpress.com/2021/11/image-7.png"><img src="https://paletee.files.wordpress.com/2021/11/image-7.png?w=1024"></a></p>
+<p>NAT Gateway</p>
+<h2 id="DNS-Resolution-in-VPC"><a href="#DNS-Resolution-in-VPC" class="headerlink" title="DNS Resolution in VPC"></a>DNS Resolution in VPC</h2><p><strong>DNS Resolution</strong> (DnsSupport)</p>
+<ul>
+<li>  決定是否讓 VPC 支援 DNS Resolution</li>
+<li>  預設是 True，查詢對象為 Amazon Provider DNS Server <strong>169.254.169.253</strong> 或是 VPC reserved IP (<strong>.2</strong>)</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://paletee.files.wordpress.com/2021/11/image-8.png"><img src="https://paletee.files.wordpress.com/2021/11/image-8.png?w=1024"></a></p>
+<p>DNS Resolution</p>
+<p><strong>DNS Hostname</strong> (enableDnsHostnames)</p>
+<ul>
+<li>  啟用時，當 EC2 有 Public IP，那就會賦予一個 public hostname 給它</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://paletee.files.wordpress.com/2021/11/image-9.png"><img src="https://paletee.files.wordpress.com/2021/11/image-9.png?w=1024"></a></p>
+<h2 id="NACLs"><a href="#NACLs" class="headerlink" title="NACLs"></a>NACLs</h2><p>全名是 Network Access Control List</p>
+<ul>
+<li>  控制流向 subnet 的流量</li>
+<li>  一個 subnet 一個 NACL，新的 subnet 都會指向到預設的 NACL</li>
+<li>  規則有各自的編號 1 - 32766，數字越低，優先權越高。E.g. #100 10.0.0.10/32 ALLOW 與 #200 10.0.0.10/32 DENY，#100 比 #200 的優先權高</li>
+</ul>
+<h3 id="Default-NACL"><a href="#Default-NACL" class="headerlink" title="Default NACL"></a>Default NACL</h3><ul>
+<li>  預設的 NACL 不可隨意修改</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://paletee.files.wordpress.com/2021/11/image-11.png"><img src="https://paletee.files.wordpress.com/2021/11/image-11.png?w=1024"></a></p>
+<h3 id="Security-Groups-vs-NACLs"><a href="#Security-Groups-vs-NACLs" class="headerlink" title="Security Groups vs. NACLs"></a>Security Groups vs. NACLs</h3><p><a target="_blank" rel="noopener" href="https://paletee.files.wordpress.com/2021/11/image-10.png"><img src="https://paletee.files.wordpress.com/2021/11/image-10.png?w=1024"></a></p>
+<h2 id="Reachability-Analyzer"><a href="#Reachability-Analyzer" class="headerlink" title="Reachability Analyzer"></a>Reachability Analyzer</h2><p>診斷網路連線問題的工具，檢查兩個端點是否能夠連線(不會傳送封包)</p>
+<p><a target="_blank" rel="noopener" href="https://paletee.files.wordpress.com/2021/11/image-12.png"><img src="https://paletee.files.wordpress.com/2021/11/image-12.png?w=620"></a></p>
+<h2 id="VPC-Peering"><a href="#VPC-Peering" class="headerlink" title="VPC Peering"></a>VPC Peering</h2><p>目的是讓兩個不同的 private network 互通</p>
+<p>Peering</p>
+<ul>
+<li>  不具有傳遞性</li>
+<li>  CIDR 不能重疊</li>
+<li>  必須修改路由設定</li>
+</ul>
+<p>以下圖為例，A 與 B Peering、B 與 C Peering，但並不意謂著 A 與 C Peering，而是要另外建立一個 A 與 C Peering。</p>
+<p><a target="_blank" rel="noopener" href="https://paletee.files.wordpress.com/2021/11/image-13.png"><img src="https://paletee.files.wordpress.com/2021/11/image-13.png?w=814"></a></p>
+<p>VPC Peering</p>
+<h2 id="VPC-Endpoints"><a href="#VPC-Endpoints" class="headerlink" title="VPC Endpoints"></a>VPC Endpoints</h2><p>每個 AWS 都有對外服務 (public URL)，但透過 VPC Endpoint 可以直接藉由 private network 連接到 AWS 的服務，借一步節省使用 NATGW、IGW 的必要性</p>
+<p><a target="_blank" rel="noopener" href="https://paletee.files.wordpress.com/2021/11/image-15.png"><img src="https://paletee.files.wordpress.com/2021/11/image-15.png?w=716"></a></p>
+<p>VPC Endpoints</p>
+<p>可以分成兩種 Endpoints</p>
+<ol>
+<li> Interface Endpoint</li>
+<li> Gateway Endpoint</li>
+</ol>
+<p><strong>Interface Endpoint</strong></p>
+<p>供應一個 Elastic Network Interface (ENI) 為進入點</p>
+<p><a target="_blank" rel="noopener" href="https://paletee.files.wordpress.com/2021/11/image-16.png"><img src="https://paletee.files.wordpress.com/2021/11/image-16.png?w=904"></a></p>
+<p><strong>Interface Endpoint</strong></p>
+<p><strong>Gateway Endpoint</strong></p>
+<p>供應一個 Gateway，並將它設為路由表的 target，支援 DynamoDB、S3</p>
+<p><a target="_blank" rel="noopener" href="https://paletee.files.wordpress.com/2021/11/image-17.png"><img src="https://paletee.files.wordpress.com/2021/11/image-17.png?w=898"></a></p>
+<p><strong>Gateway Endpoint</strong></p>
+<h2 id="VPC-Flow-logs"><a href="#VPC-Flow-logs" class="headerlink" title="VPC Flow logs"></a>VPC Flow logs</h2><ul>
+<li>  捕捉網路流量流向各個服務的資訊</li>
+<li>  協助監控連線問題</li>
+<li>  可以將 log 記錄在 S3 or CloudWatch</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://paletee.files.wordpress.com/2021/11/image-18.png"><img src="https://paletee.files.wordpress.com/2021/11/image-18.png?w=1024"></a></p>
+<p>Flow syntax</p>
+<p>以 SG 與 NACL 為例，要如何區別問題是出在 SG 或是 NACL - 看 <strong>action</strong></p>
+<p><a target="_blank" rel="noopener" href="https://paletee.files.wordpress.com/2021/11/image-20.png"><img src="https://paletee.files.wordpress.com/2021/11/image-20.png?w=1024"></a></p>
+<h2 id="PrivateLink"><a href="#PrivateLink" class="headerlink" title="PrivateLink"></a>PrivateLink</h2><p>讓不同 VPC 底下的資源溝通的方法</p>
+<ol>
+<li> 讓 VPC public</li>
+<li> VPC Peering - 要建立太多 peering</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://paletee.files.wordpress.com/2021/11/image-22.png"><img src="https://paletee.files.wordpress.com/2021/11/image-22.png?w=884"></a></p>
+<p>VPC Peering</p>
+<p><a target="_blank" rel="noopener" href="https://paletee.files.wordpress.com/2021/11/image-21.png"><img src="https://paletee.files.wordpress.com/2021/11/image-21.png?w=1024"></a></p>
+<h2 id="EC2-Classic-amp-AWS-ClassicLink"><a href="#EC2-Classic-amp-AWS-ClassicLink" class="headerlink" title="EC2 Classic &amp; AWS ClassicLink"></a>EC2 Classic &amp; AWS ClassicLink</h2><p>這項服務已經 deprecated，基本上只會在考試上干擾作答。</p>
+<ul>
+<li>  EC2 Classic: instance 運行在一個分享給其他人的網路</li>
+<li>ClassicLink<ul>
+<li>  必須與 Security Group 連接</li>
+<li>  使用 Private IPv4 溝通</li>
+<li>  移除使用 Public IPv4 或 Elastic IP 的需求</li>
+</ul>
+</li>
+</ul>
+<h2 id="Transit-Gateway"><a href="#Transit-Gateway" class="headerlink" title="Transit Gateway"></a>Transit Gateway</h2><p>當環境越來越複雜，VPC 越來越多，又要讓他們連接在一起，就會有越來越多的 Peering 需要建立，是一件相當麻煩的事情，這時就可以透過 transit gateway 來幫助我們</p>
+<p><a target="_blank" rel="noopener" href="https://paletee.files.wordpress.com/2021/11/image-24.png"><img src="https://paletee.files.wordpress.com/2021/11/image-24.png?w=826"></a></p>
+<p>Transit Gateway</p>
+<h2 id="IPv6-in-VPC"><a href="#IPv6-in-VPC" class="headerlink" title="IPv6 in VPC"></a>IPv6 in VPC</h2><ul>
+<li>  可以啟用 IPv6</li>
+<li>  IPv4 不能被停用</li>
+<li>  IPv4 與 IPv6 可以同時運行 (Dual-Stack Mode)</li>
+</ul>
+<h2 id="Egress-only-Internet-Gateway"><a href="#Egress-only-Internet-Gateway" class="headerlink" title="Egress - only Internet Gateway"></a>Egress - only Internet Gateway</h2><ul>
+<li>  只供 IPv6 使用</li>
+<li>  與 Internet Gateway 相似</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li> <a target="_blank" rel="noopener" href="https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c02/">Ultimate AWS Certified Solutions Architect Associate</a></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/11/10/aws-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-par6/" rel="prev" title="AWS 學習紀錄 Par6 – ">
+      <i class="fa fa-chevron-left"></i> AWS 學習紀錄 Par6 – 
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/11/23/hello-world/" rel="next" title="Hello World">
+      Hello World <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CIDR-IPv4"><span class="nav-number">1.</span> <span class="nav-text">CIDR - IPv4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VPC"><span class="nav-number">2.</span> <span class="nav-text">VPC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Internet-Gateway-IGW"><span class="nav-number">3.</span> <span class="nav-text">Internet Gateway (IGW)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bastion-Hosts"><span class="nav-number">4.</span> <span class="nav-text">Bastion Hosts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NAT-instance"><span class="nav-number">5.</span> <span class="nav-text">NAT instance</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NAT-Gateway"><span class="nav-number">6.</span> <span class="nav-text">NAT Gateway</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS-Resolution-in-VPC"><span class="nav-number">7.</span> <span class="nav-text">DNS Resolution in VPC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NACLs"><span class="nav-number">8.</span> <span class="nav-text">NACLs</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Default-NACL"><span class="nav-number">8.1.</span> <span class="nav-text">Default NACL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Security-Groups-vs-NACLs"><span class="nav-number">8.2.</span> <span class="nav-text">Security Groups vs. NACLs</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reachability-Analyzer"><span class="nav-number">9.</span> <span class="nav-text">Reachability Analyzer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VPC-Peering"><span class="nav-number">10.</span> <span class="nav-text">VPC Peering</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VPC-Endpoints"><span class="nav-number">11.</span> <span class="nav-text">VPC Endpoints</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VPC-Flow-logs"><span class="nav-number">12.</span> <span class="nav-text">VPC Flow logs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PrivateLink"><span class="nav-number">13.</span> <span class="nav-text">PrivateLink</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EC2-Classic-amp-AWS-ClassicLink"><span class="nav-number">14.</span> <span class="nav-text">EC2 Classic &amp; AWS ClassicLink</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transit-Gateway"><span class="nav-number">15.</span> <span class="nav-text">Transit Gateway</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IPv6-in-VPC"><span class="nav-number">16.</span> <span class="nav-text">IPv6 in VPC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Egress-only-Internet-Gateway"><span class="nav-number">17.</span> <span class="nav-text">Egress - only Internet Gateway</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">18.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Percy Chen</p>
+  <div class="site-description" itemprop="description">Share Engineer, Game and Music with u ^_^</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Percy Chen</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"chenpercy.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="在設計 APP 的架構時，若以同步處理的方式進行，在同一時間處理大流量可能會發生問題，因此要藉由 解耦 的方式，解耦的方式可以分成   SQS - Queue  SNS - Pub&#x2F;Sub  Kinesis - Streaming  SQSQueue 的訊息順序可能會不固定，訊息可能會重複 Standard Queue  流量無限制  訊息保留時間: 4~14 天  低延遲  每則訊息上限 256">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://chenpercy.github.io/2021/11/23/hello-world/index.html">
+<meta property="og:title" content="AWS 學習紀錄 Par6 – ">
+<meta property="og:url" content="https://chenpercy.github.io/2021/11/10/aws-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-par6/index.html">
 <meta property="og:site_name" content="Percy&#39;s blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="在設計 APP 的架構時，若以同步處理的方式進行，在同一時間處理大流量可能會發生問題，因此要藉由 解耦 的方式，解耦的方式可以分成   SQS - Queue  SNS - Pub&#x2F;Sub  Kinesis - Streaming  SQSQueue 的訊息順序可能會不固定，訊息可能會重複 Standard Queue  流量無限制  訊息保留時間: 4~14 天  低延遲  每則訊息上限 256">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-11-23T05:31:00.513Z">
-<meta property="article:modified_time" content="2021-11-23T05:31:00.513Z">
+<meta property="article:published_time" content="2021-11-10T01:57:23.000Z">
+<meta property="article:modified_time" content="2021-11-23T07:07:45.763Z">
 <meta property="article:author" content="Percy Chen">
 <meta property="article:tag" content="Engineer,Game,Music">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://chenpercy.github.io/2021/11/23/hello-world/">
+<link rel="canonical" href="https://chenpercy.github.io/2021/11/10/aws-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-par6/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>Hello World | Percy's blog</title>
+  <title>AWS 學習紀錄 Par6 –  | Percy's blog</title>
   
 
 
@@ -156,7 +156,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://chenpercy.github.io/2021/11/23/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://chenpercy.github.io/2021/11/10/aws-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-par6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -169,7 +169,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hello World
+          AWS 學習紀錄 Par6 – 
         </h1>
 
         <div class="post-meta">
@@ -179,7 +179,23 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2021-11-23 13:31:00" itemprop="dateCreated datePublished" datetime="2021-11-23T13:31:00+08:00">2021-11-23</time>
+              <time title="Created: 2021-11-10 09:57:23" itemprop="dateCreated datePublished" datetime="2021-11-10T09:57:23+08:00">2021-11-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-11-23 15:07:45" itemprop="dateModified" datetime="2021-11-23T15:07:45+08:00">2021-11-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AWS/" itemprop="url" rel="index"><span itemprop="name">AWS</span></a>
+                </span>
             </span>
 
           
@@ -193,19 +209,30 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+        <p>在設計 APP 的架構時，若以同步處理的方式進行，在同一時間處理大流量可能會發生問題，因此要藉由 <strong>解耦</strong> 的方式，解耦的方式可以分成</p>
+<ol>
+<li> SQS - Queue</li>
+<li> SNS - Pub/Sub</li>
+<li> Kinesis - Streaming</li>
+</ol>
+<h2 id="SQS"><a href="#SQS" class="headerlink" title="SQS"></a>SQS</h2><p>Queue 的訊息順序可能會不固定，訊息可能會重複</p>
+<h3 id="Standard-Queue"><a href="#Standard-Queue" class="headerlink" title="Standard Queue"></a>Standard Queue</h3><ol>
+<li> 流量無限制</li>
+<li> 訊息保留時間: 4~14 天</li>
+<li> 低延遲</li>
+<li> 每則訊息上限 256 KB</li>
+</ol>
+<h3 id="Access-Policy"><a href="#Access-Policy" class="headerlink" title="Access Policy"></a>Access Policy</h3><p>可以設定 Policy 讓特定使用者才可以使用 SQS</p>
+<h3 id="Message-Visibility-Timeout"><a href="#Message-Visibility-Timeout" class="headerlink" title="Message Visibility Timeout"></a>Message Visibility Timeout</h3><p>避免其他 Consumer 消耗同一個訊息，當訊息被使用時，訊息的狀態會變更為 <strong>invisibility</strong>，這段時間預設為30秒</p>
+<h3 id="Dead-Letter-Queue"><a href="#Dead-Letter-Queue" class="headerlink" title="Dead Letter Queue"></a>Dead Letter Queue</h3><p>當訊息失敗的次數超過指定的次數，訊息會被派送到 <strong>Dead Letter Queue</strong> (DLQ) - 更一步 Debug</p>
+<h3 id="Delay-Queue"><a href="#Delay-Queue" class="headerlink" title="Delay Queue"></a>Delay Queue</h3><p>訊息在特定的時間過後才能被使用，預設是 0 秒</p>
+<h3 id="Long-Polling"><a href="#Long-Polling" class="headerlink" title="Long Polling"></a>Long Polling</h3><p>持續撈取訊息儘管佇列為空，這麼做的好處是<strong>減少呼叫 API 的次數</strong></p>
+<h3 id="FIFO"><a href="#FIFO" class="headerlink" title="FIFO"></a>FIFO</h3><p>First In First Out - 訊息會按照訊息被處理，因此有吞吐量限制，而且也不會有重複的問題發生</p>
+<h2 id="SNS"><a href="#SNS" class="headerlink" title="SNS"></a>SNS</h2><p>定義 Pub / Sub，進一步達成一個訊息送往多個目標，與 SQS 組合成一個 <strong>Fan Out</strong> Pattern</p>
+<h2 id="Kenesis"><a href="#Kenesis" class="headerlink" title="Kenesis"></a>Kenesis</h2><p>負責 <strong>搜集</strong>、<strong>處理</strong>、<strong>分析</strong> 即時串流資料</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li> Ultimate AWS Certified Solutions Architect Associate 2021</li>
+</ol>
 
     </div>
 
@@ -221,10 +248,13 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/11/16/aws-networking-vpc/" rel="prev" title="AWS Networking - VPC">
-      <i class="fa fa-chevron-left"></i> AWS Networking - VPC
+    <a href="/2021/10/22/aws-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-par5-rds/" rel="prev" title="AWS 學習紀錄 Par5 – RDS">
+      <i class="fa fa-chevron-left"></i> AWS 學習紀錄 Par5 – RDS
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/11/16/aws-networking-vpc/" rel="next" title="AWS Networking - VPC">
+      AWS Networking - VPC <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -283,7 +313,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SQS"><span class="nav-number">1.</span> <span class="nav-text">SQS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Standard-Queue"><span class="nav-number">1.1.</span> <span class="nav-text">Standard Queue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Access-Policy"><span class="nav-number">1.2.</span> <span class="nav-text">Access Policy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Message-Visibility-Timeout"><span class="nav-number">1.3.</span> <span class="nav-text">Message Visibility Timeout</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dead-Letter-Queue"><span class="nav-number">1.4.</span> <span class="nav-text">Dead Letter Queue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Delay-Queue"><span class="nav-number">1.5.</span> <span class="nav-text">Delay Queue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Long-Polling"><span class="nav-number">1.6.</span> <span class="nav-text">Long Polling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FIFO"><span class="nav-number">1.7.</span> <span class="nav-text">FIFO</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SNS"><span class="nav-number">2.</span> <span class="nav-text">SNS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kenesis"><span class="nav-number">3.</span> <span class="nav-text">Kenesis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

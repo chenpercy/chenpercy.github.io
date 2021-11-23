@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"chenpercy.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="出處:Leetcode Week 4: Jan. 22nd - Jan. 28th 題目:給定兩字串，並根據以下兩條規則進行操作，則這兩字串視為密切相似的    任意交換兩個 已存在的 字元，也就是說 abcde -&gt; aecdb   轉換任意 已存在的 的字元為另一個 以存在的 字元，也就是說 abbcd -&gt; addcb (注意! 相同的字元都要做轉換)  給定兩字串 word1、">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://chenpercy.github.io/2021/11/23/hello-world/index.html">
+<meta property="og:title" content="Determine if Two Strings Are Close">
+<meta property="og:url" content="https://chenpercy.github.io/2021/01/25/leetcode-determine-if-two-strings-are-close/index.html">
 <meta property="og:site_name" content="Percy&#39;s blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="出處:Leetcode Week 4: Jan. 22nd - Jan. 28th 題目:給定兩字串，並根據以下兩條規則進行操作，則這兩字串視為密切相似的    任意交換兩個 已存在的 字元，也就是說 abcde -&gt; aecdb   轉換任意 已存在的 的字元為另一個 以存在的 字元，也就是說 abbcd -&gt; addcb (注意! 相同的字元都要做轉換)  給定兩字串 word1、">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-11-23T05:31:00.513Z">
-<meta property="article:modified_time" content="2021-11-23T05:31:00.513Z">
+<meta property="article:published_time" content="2021-01-24T16:33:35.000Z">
+<meta property="article:modified_time" content="2021-11-23T07:09:09.311Z">
 <meta property="article:author" content="Percy Chen">
-<meta property="article:tag" content="Engineer,Game,Music">
+<meta property="article:tag" content="Leetcode">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://chenpercy.github.io/2021/11/23/hello-world/">
+<link rel="canonical" href="https://chenpercy.github.io/2021/01/25/leetcode-determine-if-two-strings-are-close/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>Hello World | Percy's blog</title>
+  <title>Determine if Two Strings Are Close | Percy's blog</title>
   
 
 
@@ -156,7 +156,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://chenpercy.github.io/2021/11/23/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://chenpercy.github.io/2021/01/25/leetcode-determine-if-two-strings-are-close/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -169,7 +169,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hello World
+          Determine if Two Strings Are Close
         </h1>
 
         <div class="post-meta">
@@ -179,7 +179,23 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2021-11-23 13:31:00" itemprop="dateCreated datePublished" datetime="2021-11-23T13:31:00+08:00">2021-11-23</time>
+              <time title="Created: 2021-01-25 00:33:35" itemprop="dateCreated datePublished" datetime="2021-01-25T00:33:35+08:00">2021-01-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-11-23 15:09:09" itemprop="dateModified" datetime="2021-11-23T15:09:09+08:00">2021-11-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Program/" itemprop="url" rel="index"><span itemprop="name">Program</span></a>
+                </span>
             </span>
 
           
@@ -193,19 +209,41 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+        <h1 id="出處"><a href="#出處" class="headerlink" title="出處:"></a>出處:</h1><p>Leetcode Week 4: Jan. 22nd - Jan. 28th</p>
+<h1 id="題目"><a href="#題目" class="headerlink" title="題目:"></a>題目:</h1><p>給定兩字串，並根據以下兩條規則進行操作，則這兩字串視為密切相似的</p>
+<ul>
+<li>  任意交換兩個 <strong>已存在的</strong> 字元，也就是說 <em>abcde -&gt; aecdb</em></li>
+<li>  轉換任意 <strong>已存在的</strong> 的字元為另一個 <strong>以存在的</strong> 字元，也就是說 <em>abbcd -&gt; addcb</em> (注意! 相同的字元都要做轉換)</li>
+</ul>
+<p>給定兩字串 word1、word2，如果 word1 與 word2 是密切的(close)則回傳 <code>true</code>，否則回傳 <code>false</code></p>
+<h4 id="範例1"><a href="#範例1" class="headerlink" title="範例1:"></a>範例1:</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: word1 = &quot;abc&quot;, word2 = &quot;bca&quot;</span><br><span class="line">Output: true</span><br><span class="line">理由: word1 經過兩次操作能變成 word2</span><br><span class="line">Apply Operation 1: &quot;abc&quot; -&gt; &quot;acb&quot;</span><br><span class="line">Apply Operation 1: &quot;acb&quot; -&gt; &quot;bca&quot;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h4 id="範例2"><a href="#範例2" class="headerlink" title="範例2:"></a>範例2:</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: word1 = &quot;cabbba&quot;, word2 = &quot;aabbcc&quot;</span><br><span class="line">Output: false</span><br><span class="line">理由: word1 不可能變成 word2</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<h4 id="限制"><a href="#限制" class="headerlink" title="限制:"></a>限制:</h4><ul>
+<li><p>  <code>1 &lt;= word1.length, word2.length &lt;= 105</code></p>
+</li>
+<li><p>  字串 word1 及 word2 都只有小寫英文字母</p>
+</li>
+</ul>
+<h1 id="解題"><a href="#解題" class="headerlink" title="解題:"></a>解題:</h1><p>條件1相對單純，這題主要判斷如何讓 操作2 的條件成立，其實只要去判斷兩字串中，字母分布率是否相同即可</p>
+<p>也就是說，假如兩字串是 cabbba、abbccc，你會發現兩字串字母分布率相同，分別是 {“c”: 1, “b”: 3, “a”: 2} 及 {“c”: 3, “b”: 2, “a”: 1} (都是 1、2、3)；也可以加上一些判斷邏輯略過根本不需要計算分母分布率的情況</p>
+<p>附上程式碼:</p>
+<p>from collections import *<br>class Solution:<br>    def closeStrings(self, word1: str, word2: str) -&gt; bool:<br>        if len(word1) != len(word2):<br>            return False<br>        elif set(word1) != set(word2):<br>            return False<br>        word1_dict = defaultdict(int)<br>        word2_dict = defaultdict(int)</p>
+<pre><code>    for word in word1:
+        word1\_dict\[word\] += 1
+    
+    for word in word2:
+        word2\_dict\[word\] += 1
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+    if sorted(word1\_dict.values()) != sorted(word2\_dict.values()):
+        return False
+    
+    return True
+</code></pre>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference:"></a>Reference:</h1><ol>
+<li> <a target="_blank" rel="noopener" href="https://leetcode.com/explore/featured/card/january-leetcoding-challenge-2021/582/week-4-january-22nd-january-28th/3613/">Determine if Two Strings Are Close</a></li>
+</ol>
 
     </div>
 
@@ -214,6 +252,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Leetcode/" rel="tag"># Leetcode</a>
+          </div>
 
         
 
@@ -221,10 +262,13 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/11/16/aws-networking-vpc/" rel="prev" title="AWS Networking - VPC">
-      <i class="fa fa-chevron-left"></i> AWS Networking - VPC
+    <a href="/2018/11/24/%E6%96%B0%E9%AE%AE%E4%BA%BA-my-interview-nov-18/" rel="prev" title="新鮮人面試 My Interview  at Nov. 18">
+      <i class="fa fa-chevron-left"></i> 新鮮人面試 My Interview  at Nov. 18
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/09/30/python-%E5%9F%BA%E7%A4%8E%E6%A6%82%E5%BF%B5-function/" rel="next" title="Python 基礎概念 - function">
+      Python 基礎概念 - function <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -283,7 +327,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%BA%E8%99%95"><span class="nav-number">1.</span> <span class="nav-text">出處:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A1%8C%E7%9B%AE"><span class="nav-number">2.</span> <span class="nav-text">題目:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AF%84%E4%BE%8B1"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">範例1:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AF%84%E4%BE%8B2"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">範例2:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%99%90%E5%88%B6"><span class="nav-number">2.0.0.3.</span> <span class="nav-text">限制:</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E9%A1%8C"><span class="nav-number">3.</span> <span class="nav-text">解題:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference:</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
