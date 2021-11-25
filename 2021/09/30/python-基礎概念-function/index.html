@@ -234,7 +234,7 @@
 <p>function = outer_func<br>print(function)  # &lt;function outer_func at 0x105b3a5e0&gt;<br>function()  # I’m inner func</p>
 <p>這段程式碼可以理解成：在 outer_func 內部又定義了一個 inner_func，並將 inner_func reference 回傳。因此在印出 function 時會看到的是它的 reference value，實際上要成功呼叫這個函式必須加上<code>()</code>，才會印出 <strong>I’m inner func</strong>。</p>
 <h2 id="lambda"><a href="#lambda" class="headerlink" title="lambda"></a>lambda</h2><p>透過 lamdba，可以定義一個 anonymous function，並且讓定義函式上更加輕便，因為他的格式只要提供<strong>參數</strong>、<strong>邏輯</strong></p>
-<p>lambda &lt;parameter_list&gt;: <expression></p>
+<p>lambda &lt;parameter_list&gt;: <expression></expression></p>
 <p>直接透過例子來讓大家了解</p>
 <p>reverse_list_util = lambda lst: lst[::-1]</p>
 <p>list1 = [1, 5, 8, 10]<br>print(reverse_list_util(list1))  # [10, 8, 5, 1]</p>
@@ -344,7 +344,7 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
