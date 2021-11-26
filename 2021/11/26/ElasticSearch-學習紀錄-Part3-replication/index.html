@@ -21,20 +21,24 @@
     var CONFIG = {"hostname":"chenpercy.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Oops… 看起來你來到了一個不存在的網站">
-<meta property="og:type" content="website">
-<meta property="og:title" content="404">
-<meta property="og:url" content="https://chenpercy.github.io/404.html">
+  <meta name="description" content="前言這篇文章是出自於線上課程 Complete Guide to Elasticsearch 的所記錄的筆記。 這一篇文章主要說明 replication 在 ElasticSearch 扮演什麼角色。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ElasticSearch 學習紀錄 Part3 - replication">
+<meta property="og:url" content="https://chenpercy.github.io/2021/11/26/ElasticSearch-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-Part3-replication/index.html">
 <meta property="og:site_name" content="Percy&#39;s blog">
-<meta property="og:description" content="Oops… 看起來你來到了一個不存在的網站">
+<meta property="og:description" content="前言這篇文章是出自於線上課程 Complete Guide to Elasticsearch 的所記錄的筆記。 這一篇文章主要說明 replication 在 ElasticSearch 扮演什麼角色。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-11-23T09:16:22.000Z">
-<meta property="article:modified_time" content="2021-11-23T09:31:20.597Z">
+<meta property="og:image" content="https://chenpercy.github.io/2021/11/26/ElasticSearch-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-Part3-replication/replication1.png">
+<meta property="og:image" content="https://chenpercy.github.io/2021/11/26/ElasticSearch-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-Part3-replication/replication2.png">
+<meta property="og:image" content="https://chenpercy.github.io/2021/11/26/ElasticSearch-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-Part3-replication/replication3.png">
+<meta property="article:published_time" content="2021-11-26T06:12:03.000Z">
+<meta property="article:modified_time" content="2021-11-26T08:25:41.753Z">
 <meta property="article:author" content="Percy Chen">
 <meta property="article:tag" content="Engineer,Game,Music,Twitch">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chenpercy.github.io/2021/11/26/ElasticSearch-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-Part3-replication/replication1.png">
 
-<link rel="canonical" href="https://chenpercy.github.io/404">
+<link rel="canonical" href="https://chenpercy.github.io/2021/11/26/ElasticSearch-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-Part3-replication/">
 
 
 <script id="page-configurations">
@@ -42,13 +46,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
 
-  <title>404 | Percy's blog
-</title>
+  <title>ElasticSearch 學習紀錄 Part3 - replication | Percy's blog</title>
   
 
 
@@ -156,48 +159,111 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="en">
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://chenpercy.github.io/2021/11/26/ElasticSearch-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-Part3-replication/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/11907183?s=400&u=a00a5c105d9c91dffcf7b5afb61dcf1ab9794973&v=4">
+      <meta itemprop="name" content="Percy Chen">
+      <meta itemprop="description" content="大家好我是 Percy，目前是一名軟體工程師，同時也是 Twitch 遊戲實況主 「薄餡」。這個網站主要分享技術、遊戲、音樂以及一些人生經歷。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Percy's blog">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ElasticSearch 學習紀錄 Part3 - replication
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">404
-</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
 
-<div class="post-meta">
+              <time title="Created: 2021-11-26 14:12:03 / Modified: 16:25:41" itemprop="dateCreated datePublished" datetime="2021-11-26T14:12:03+08:00">2021-11-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ElasticSearch/" itemprop="url" rel="index"><span itemprop="name">ElasticSearch</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>這篇文章是出自於線上課程 <a target="_blank" rel="noopener" href="https://www.udemy.com/course/elasticsearch-complete-guide/">Complete Guide to Elasticsearch</a> 的所記錄的筆記。</p>
+<p>這一篇文章主要說明 replication 在 ElasticSearch 扮演什麼角色。</p>
+<span id="more"></span>
+
+<h1 id="本文"><a href="#本文" class="headerlink" title="本文"></a>本文</h1><p>replication 是為了避免當 node 發生問題時，提供容錯的一種方式。</p>
+<h2 id="replication-運作的方式"><a href="#replication-運作的方式" class="headerlink" title="replication 運作的方式"></a>replication 運作的方式</h2><ul>
+<li><p>每個 shard 以及它本身的 replication 會形成一個 replication group</p>
+<img src="replication1.png" width="80%" height="80%"></li>
+<li><p>replication 會將複本放在其他的節點上，避免未來發生單一節點掛掉時，無法存取到該資料的狀況</p>
+<img src="replication2.png" width="80%" height="80%"></li>
+</ul>
+<h2 id="replication-vs-snapshot"><a href="#replication-vs-snapshot" class="headerlink" title="replication vs. snapshot"></a>replication vs. snapshot</h2><p>replication 的目的是為了保持服務能夠持續運行儘管其中一個 node 掛掉，然而 snapshot 是當發有突發狀況時能夠即時回到過去某個時間點的狀況。<br>除了避免資料遺失，replication 還能用來增加吞吐量，也就是說，當 replication shard 增加，能夠支援的請求量也會增加。<br>Elasticsearch 會自動將流量交給最適合處理這個請求的 shard</p>
+<img src="replication3.png" width="80%" height="80%">
+
+<h2 id="auto-expand-replicas"><a href="#auto-expand-replicas" class="headerlink" title="auto_expand_replicas"></a>auto_expand_replicas</h2><p>隨著節點的數量來決定是否產生 replica shard，如果目前的 cluster 只有一個節點的話，就不會產生 replica shard。</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://www.udemy.com/course/elasticsearch-complete-guide/">Complete Guide to Elasticsearch</a></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/11/26/ElasticSearch-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-Part2-sharding-scalability/" rel="prev" title="ElasticSearch 學習紀錄 Part2 - sharding & scalability">
+      <i class="fa fa-chevron-left"></i> ElasticSearch 學習紀錄 Part2 - sharding & scalability
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
-          <p>Oops… 看起來你來到了一個不存在的網站</p>
-
-      </div>
-      
-      
-      
-    </div>
-    
-
-    
-    
-    
 
 
           </div>
           
+    <div class="comments" id="gitalk-container"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -244,6 +310,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%AC%E6%96%87"><span class="nav-number">2.</span> <span class="nav-text">本文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#replication-%E9%81%8B%E4%BD%9C%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">replication 運作的方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#replication-vs-snapshot"><span class="nav-number">2.2.</span> <span class="nav-text">replication vs. snapshot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#auto-expand-replicas"><span class="nav-number">2.3.</span> <span class="nav-text">auto_expand_replicas</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -389,6 +456,25 @@ if (document.querySelectorAll('pre.mermaid').length) {
 
   
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'a8e1604a92eb820e3b5a',
+      clientSecret: '040dc268ccfd17d864c619929032dd61d18e8950',
+      repo        : 'chenpercy.github.io',
+      owner       : 'chenpercy',
+      admin       : ['chenpercy'],
+      id          : '64d92f0122190f3382860bfa2d4e637e',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
 
 </body>
 </html>

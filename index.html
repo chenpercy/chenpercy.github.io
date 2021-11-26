@@ -160,6 +160,158 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://chenpercy.github.io/2021/11/26/ElasticSearch-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-Part3-replication/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/11907183?s=400&u=a00a5c105d9c91dffcf7b5afb61dcf1ab9794973&v=4">
+      <meta itemprop="name" content="Percy Chen">
+      <meta itemprop="description" content="大家好我是 Percy，目前是一名軟體工程師，同時也是 Twitch 遊戲實況主 「薄餡」。這個網站主要分享技術、遊戲、音樂以及一些人生經歷。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Percy's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/26/ElasticSearch-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-Part3-replication/" class="post-title-link" itemprop="url">ElasticSearch 學習紀錄 Part3 - replication</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-11-26 14:12:03 / Modified: 16:25:41" itemprop="dateCreated datePublished" datetime="2021-11-26T14:12:03+08:00">2021-11-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ElasticSearch/" itemprop="url" rel="index"><span itemprop="name">ElasticSearch</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>這篇文章是出自於線上課程 <a target="_blank" rel="noopener" href="https://www.udemy.com/course/elasticsearch-complete-guide/">Complete Guide to Elasticsearch</a> 的所記錄的筆記。</p>
+<p>這一篇文章主要說明 replication 在 ElasticSearch 扮演什麼角色。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/11/26/ElasticSearch-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-Part3-replication/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://chenpercy.github.io/2021/11/26/ElasticSearch-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-Part2-sharding-scalability/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/11907183?s=400&u=a00a5c105d9c91dffcf7b5afb61dcf1ab9794973&v=4">
+      <meta itemprop="name" content="Percy Chen">
+      <meta itemprop="description" content="大家好我是 Percy，目前是一名軟體工程師，同時也是 Twitch 遊戲實況主 「薄餡」。這個網站主要分享技術、遊戲、音樂以及一些人生經歷。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Percy's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/26/ElasticSearch-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-Part2-sharding-scalability/" class="post-title-link" itemprop="url">ElasticSearch 學習紀錄 Part2 - sharding & scalability</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-11-26 12:02:51 / Modified: 14:10:23" itemprop="dateCreated datePublished" datetime="2021-11-26T12:02:51+08:00">2021-11-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ElasticSearch/" itemprop="url" rel="index"><span itemprop="name">ElasticSearch</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>這篇文章是出自於線上課程 <a target="_blank" rel="noopener" href="https://www.udemy.com/course/elasticsearch-complete-guide/">Complete Guide to Elasticsearch</a> 的所記錄的筆記。</p>
+<p>這一篇文章主要說明 sharding 在 ElasticSearch 扮演什麼角色</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/11/26/ElasticSearch-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-Part2-sharding-scalability/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://chenpercy.github.io/2021/11/25/ElasticSearch-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-Part1-%E5%9F%BA%E7%A4%8E%E4%BB%8B%E7%B4%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -183,10 +335,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2021-11-25 09:29:49 / Modified: 17:42:31" itemprop="dateCreated datePublished" datetime="2021-11-25T09:29:49+08:00">2021-11-25</time>
+              <time title="Created: 2021-11-25 09:29:49" itemprop="dateCreated datePublished" datetime="2021-11-25T09:29:49+08:00">2021-11-25</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-11-26 12:03:26" itemprop="dateModified" datetime="2021-11-26T12:03:26+08:00">2021-11-26</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -798,197 +956,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://chenpercy.github.io/2021/10/13/%E4%BB%80%E9%BA%BC%E6%98%AF-b-tree-index/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/11907183?s=400&u=a00a5c105d9c91dffcf7b5afb61dcf1ab9794973&v=4">
-      <meta itemprop="name" content="Percy Chen">
-      <meta itemprop="description" content="大家好我是 Percy，目前是一名軟體工程師，同時也是 Twitch 遊戲實況主 「薄餡」。這個網站主要分享技術、遊戲、音樂以及一些人生經歷。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Percy's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/10/13/%E4%BB%80%E9%BA%BC%E6%98%AF-b-tree-index/" class="post-title-link" itemprop="url">為何 DB index 要使用 B-tree?</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-10-13 15:24:28" itemprop="dateCreated datePublished" datetime="2021-10-13T15:24:28+08:00">2021-10-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-11-23 17:31:20" itemprop="dateModified" datetime="2021-11-23T17:31:20+08:00">2021-11-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B/" itemprop="url" rel="index"><span itemprop="name">資料結構</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="什麼是-B-tree"><a href="#什麼是-B-tree" class="headerlink" title="什麼是 B-tree?"></a>什麼是 B-tree?</h2><p>B-tree 是一種資料結構，其節點所儲存資料是有序的，如下圖所示，每一個節點所包含的值是以遞增的方式排序。其內部節點擁有可變數量的 <strong>key</strong>，且 key 左邊的值小於自己；右邊的值大於自己。</p>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/B-tree.svg/400px-B-tree.svg.png"></p>
-<blockquote>
-<p>B-tree 並不是唸作 <code>B減樹</code>，不要因為把它跟 B+tree 拿來做比較，就自動把它唸成 <strong><code>B減樹</code></strong> 摟!  </p>
-</blockquote>
-<h2 id="為何需要-B-tree"><a href="#為何需要-B-tree" class="headerlink" title="為何需要 B-tree?"></a>為何需要 B-tree?</h2><p>在資料庫的索引 Index，便是使用 B-tree 當作資料結構，那為何不能使用其他資料結構呢?</p>
-<p>想想看要如何搜尋一筆資料，最直觀的作法便是從第一筆資料到最後一筆資料，去搜尋相符的資料即可，其時間複雜度為 O(n)。但這種作法，在資料量龐大時的效率明顯不佳，如果運氣好的話可以在前幾筆就找到想要的資料，否則也有可能資料出現在最後一筆，要加強搜尋的效率，接著想到的方法便是二元搜尋 Binary Search，使用這種資料結構能將搜尋資料的複雜度降低至 O(log n)。</p>
-<p>接著我們回頭看，B-tree 搜尋資料的時間複雜度其實也是 O(log n)，跟二元搜尋的時間複雜度相比，其實是一樣的，那為什麼我們不採用 Binary Search，而是要使用 B-tree? 這就牽扯到硬碟IO的議題了。</p>
-<p>今天之所以會使用到索引，就是因為資料量龐大，想要增加搜尋的效率而使用。資料量龐大導致索引的資料也相對的龐大，這麼多的資料並不會儲存在記憶體，而是在硬碟裡，既然儲存在印碟裡，就如同前面所說，會牽涉到IO的問題。</p>
-<p>因為計算資料都要在記憶體上進行，透過索引搜尋資料且索引很大時，並不能一次將索引放進記憶體，而是會將資料逐一放進記憶體。假設二元搜尋樹的結構如下圖，每一個節點代表一個索引，搜尋的順序便是 8 -&gt; 3 -&gt; 6 -&gt; 7，聰明如你便可以想像得到，如果今天要搜尋到 7，因為資料結構的關係，導致使用了 Binary Search Tree 的索引總共要進行 <strong>4次</strong> 的硬碟 IO。</p>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Binary_search_tree.svg/1200px-Binary_search_tree.svg.png" alt="二元搜尋樹- 維基百科，自由的百科全書"></p>
-<hr>
-<p>若是使用 B-tree 的資料結構實作索引，如下圖，若是我們要找 117，我們只要進行 <strong>3次IO</strong>，雖然每一個節點要比較的元素變多了，但因為這些元素都已經放進記憶體，在記憶體進行比較的耗時幾乎可以忽略。相同的資料若是使用二元搜尋樹，樹會變得很高，樹越高，IO 存取的次數也就越多。</p>
-<p><img src="https://paletee.files.wordpress.com/2021/10/3daf2-1mrxhv0bptbshjumuh9li_a.png" alt="翻譯】How Database B-tree Indexing Works  by vic  Medium"></p>
-<p>整體的重點就是: <strong>降低硬碟 IO 的存取次數，才是一個適合索引的資料結構</strong></p>
-<p>抑或是說，比起又高又瘦的樹狀結構，又矮又胖的樹狀結構反而更適合當作索引的資料結構。</p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
-<li> <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzIxMjE5MTE1Nw==&mid=2653190965&idx=1&sn=53f78fa037386f85531832cd5322d2a0&chksm=8c9909efbbee80f90512f0c36356c31cc74c388c46388dc2317d43c8f8597298f233ca9c29e9&scene=21#wechat_redirect">什麼是 B 樹?</a></li>
-<li> <a target="_blank" rel="noopener" href="https://iter01.com/584005.html">MySQL的索引為什麼用B+Tree?</a></li>
-<li> <a target="_blank" rel="noopener" href="https://dzone.com/articles/database-btree-indexing-in-sqlite">How Database B-Tree Indexing Works?</a></li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://chenpercy.github.io/2021/09/30/python-%E5%9F%BA%E7%A4%8E%E6%A6%82%E5%BF%B5-function/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/11907183?s=400&u=a00a5c105d9c91dffcf7b5afb61dcf1ab9794973&v=4">
-      <meta itemprop="name" content="Percy Chen">
-      <meta itemprop="description" content="大家好我是 Percy，目前是一名軟體工程師，同時也是 Twitch 遊戲實況主 「薄餡」。這個網站主要分享技術、遊戲、音樂以及一些人生經歷。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Percy's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/30/python-%E5%9F%BA%E7%A4%8E%E6%A6%82%E5%BF%B5-function/" class="post-title-link" itemprop="url">Python 基礎概念 - function</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-09-30 15:52:13" itemprop="dateCreated datePublished" datetime="2021-09-30T15:52:13+08:00">2021-09-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-11-23 17:31:20" itemprop="dateModified" datetime="2021-11-23T17:31:20+08:00">2021-11-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%9C%AA%E5%88%86%E9%A1%9E/" itemprop="url" rel="index"><span itemprop="name">未分類</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在 python 中定義函式，不僅僅只有 <code>def</code>，還有其他種定義的方式，在這篇文章你會學到</p>
-<ol>
-<li> def</li>
-<li> lambda</li>
-</ol>
-<h2 id="函式-function"><a href="#函式-function" class="headerlink" title="函式 function"></a>函式 function</h2><p>函式不僅用來呼叫，也可以作為一個變數供另外一個函式的參數所使用，比方說下面的例子</p>
-<p>from typing import Callable</p>
-<p>def foo():<br>    print(‘My first function!’)</p>
-<p>def call_foo(func: Callable) -&gt; None:<br>    func()</p>
-<p>call_foo(foo)  # My first function!</p>
-<p>這邊雖然呼叫的是 call_foo，但實際上是呼叫所傳入的參數 foo 執行的結果。這種將函式組合在一起也被稱作 <strong>function composition</strong>。如果對於 JS 比較有經驗的人，應該能夠直接聯想到 <strong>callback function</strong>，不過這次先不深入討論這個名詞。</p>
-<p>再來看一個例子</p>
-<p>def outer_func():<br>    def inner_func():<br>        print(“I’m inner func”)</p>
-<pre><code>return inner\_func
-</code></pre>
-<p>function = outer_func<br>print(function)  # &lt;function outer_func at 0x105b3a5e0&gt;<br>function()  # I’m inner func</p>
-<p>這段程式碼可以理解成：在 outer_func 內部又定義了一個 inner_func，並將 inner_func reference 回傳。因此在印出 function 時會看到的是它的 reference value，實際上要成功呼叫這個函式必須加上<code>()</code>，才會印出 <strong>I’m inner func</strong>。</p>
-<h2 id="lambda"><a href="#lambda" class="headerlink" title="lambda"></a>lambda</h2><p>透過 lamdba，可以定義一個 anonymous function，並且讓定義函式上更加輕便，因為他的格式只要提供<strong>參數</strong>、<strong>邏輯</strong></p>
-<p>lambda &lt;parameter_list&gt;: <expression></expression></p>
-<p>直接透過例子來讓大家了解</p>
-<p>reverse_list_util = lambda lst: lst[::-1]</p>
-<p>list1 = [1, 5, 8, 10]<br>print(reverse_list_util(list1))  # [10, 8, 5, 1]</p>
-<p>這裡定義了一個 lambda function，並讓輸入的 list 反轉後輸出</p>
-<p>當然 lambda 還可以與 map、filter 之類內建的函式結合，但是這篇文章不會去探討那些，主要是簡單介紹一下如何在 python 定義函式。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1060,7 +1027,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
