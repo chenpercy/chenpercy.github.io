@@ -242,6 +242,13 @@
   </url>
   
   <url>
+    <loc>https://chenpercy.github.io/tags/RDS/</loc>
+    <lastmod>2021-12-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://chenpercy.github.io/tags/SQS/</loc>
     <lastmod>2021-12-03</lastmod>
     <changefreq>daily</changefreq>
@@ -257,13 +264,6 @@
   
   <url>
     <loc>https://chenpercy.github.io/tags/Kinesis/</loc>
-    <lastmod>2021-12-03</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenpercy.github.io/tags/RDS/</loc>
     <lastmod>2021-12-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -298,13 +298,6 @@
   </url>
   
   <url>
-    <loc>https://chenpercy.github.io/tags/murmur/</loc>
-    <lastmod>2021-12-03</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://chenpercy.github.io/tags/DOS/</loc>
     <lastmod>2021-12-03</lastmod>
     <changefreq>daily</changefreq>
@@ -312,7 +305,7 @@
   </url>
   
   <url>
-    <loc>https://chenpercy.github.io/tags/Database/</loc>
+    <loc>https://chenpercy.github.io/tags/murmur/</loc>
     <lastmod>2021-12-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -333,7 +326,21 @@
   </url>
   
   <url>
+    <loc>https://chenpercy.github.io/tags/Database/</loc>
+    <lastmod>2021-12-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://chenpercy.github.io/tags/%E6%8E%A8%E7%94%84/</loc>
+    <lastmod>2021-12-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenpercy.github.io/tags/Backend-Engineer/</loc>
     <lastmod>2021-12-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -348,13 +355,6 @@
   
   <url>
     <loc>https://chenpercy.github.io/tags/Host/</loc>
-    <lastmod>2021-12-03</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenpercy.github.io/tags/Backend-Engineer/</loc>
     <lastmod>2021-12-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -405,14 +405,21 @@
   </url>
   
   <url>
-    <loc>https://chenpercy.github.io/categories/Data-Structure/</loc>
+    <loc>https://chenpercy.github.io/categories/Security/</loc>
     <lastmod>2021-12-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://chenpercy.github.io/categories/Security/</loc>
+    <loc>https://chenpercy.github.io/categories/Programming/</loc>
+    <lastmod>2021-12-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenpercy.github.io/categories/Data-Structure/</loc>
     <lastmod>2021-12-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -427,13 +434,6 @@
   
   <url>
     <loc>https://chenpercy.github.io/categories/Interview/</loc>
-    <lastmod>2021-12-03</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenpercy.github.io/categories/Programming/</loc>
     <lastmod>2021-12-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
