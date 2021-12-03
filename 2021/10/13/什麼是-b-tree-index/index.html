@@ -21,20 +21,20 @@
     var CONFIG = {"hostname":"chenpercy.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="什麼是 B-tree?B-tree 是一種資料結構，其節點所儲存資料是有序的，如下圖所示，每一個節點所包含的值是以遞增的方式排序。其內部節點擁有可變數量的 key，且 key 左邊的值小於自己；右邊的值大於自己。   B-tree 並不是唸作 B減樹，不要因為把它跟 B+tree 拿來做比較，就自動把它唸成 B減樹 摟!    為何需要 B-tree?在資料庫的索引 Index，便是使用 B-tr">
+  <meta name="description" content="什麼是 B-tree?B-tree 是一種資料結構，其節點所儲存資料是有序的，如下圖所示，每一個節點所包含的值是以遞增的方式排序。其內部節點擁有可變數量的 key，且 key 左邊的值小於自己；右邊的值大於自己。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="為何 DB index 要使用 B-tree?">
 <meta property="og:url" content="https://chenpercy.github.io/2021/10/13/%E4%BB%80%E9%BA%BC%E6%98%AF-b-tree-index/index.html">
 <meta property="og:site_name" content="Percy&#39;s blog">
-<meta property="og:description" content="什麼是 B-tree?B-tree 是一種資料結構，其節點所儲存資料是有序的，如下圖所示，每一個節點所包含的值是以遞增的方式排序。其內部節點擁有可變數量的 key，且 key 左邊的值小於自己；右邊的值大於自己。   B-tree 並不是唸作 B減樹，不要因為把它跟 B+tree 拿來做比較，就自動把它唸成 B減樹 摟!    為何需要 B-tree?在資料庫的索引 Index，便是使用 B-tr">
+<meta property="og:description" content="什麼是 B-tree?B-tree 是一種資料結構，其節點所儲存資料是有序的，如下圖所示，每一個節點所包含的值是以遞增的方式排序。其內部節點擁有可變數量的 key，且 key 左邊的值小於自己；右邊的值大於自己。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/B-tree.svg/400px-B-tree.svg.png">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Binary_search_tree.svg/1200px-Binary_search_tree.svg.png">
 <meta property="og:image" content="https://paletee.files.wordpress.com/2021/10/3daf2-1mrxhv0bptbshjumuh9li_a.png">
 <meta property="article:published_time" content="2021-10-13T07:24:28.000Z">
-<meta property="article:modified_time" content="2021-11-23T09:31:20.572Z">
+<meta property="article:modified_time" content="2021-12-03T01:57:37.719Z">
 <meta property="article:author" content="Percy Chen">
-<meta property="article:tag" content="Engineer,Game,Music,Twitch">
+<meta property="article:tag" content="Database">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/B-tree.svg/400px-B-tree.svg.png">
 
@@ -197,7 +197,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-11-23 17:31:20" itemprop="dateModified" datetime="2021-11-23T17:31:20+08:00">2021-11-23</time>
+                <time title="Modified: 2021-12-03 09:57:37" itemprop="dateModified" datetime="2021-12-03T09:57:37+08:00">2021-12-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -205,7 +205,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B/" itemprop="url" rel="index"><span itemprop="name">資料結構</span></a>
+                  <a href="/categories/Data-Structure/" itemprop="url" rel="index"><span itemprop="name">Data Structure</span></a>
                 </span>
             </span>
 
@@ -221,6 +221,7 @@
 
       
         <h2 id="什麼是-B-tree"><a href="#什麼是-B-tree" class="headerlink" title="什麼是 B-tree?"></a>什麼是 B-tree?</h2><p>B-tree 是一種資料結構，其節點所儲存資料是有序的，如下圖所示，每一個節點所包含的值是以遞增的方式排序。其內部節點擁有可變數量的 <strong>key</strong>，且 key 左邊的值小於自己；右邊的值大於自己。</p>
+<span id="more"></span>
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/B-tree.svg/400px-B-tree.svg.png"></p>
 <blockquote>
 <p>B-tree 並不是唸作 <code>B減樹</code>，不要因為把它跟 B+tree 拿來做比較，就自動把它唸成 <strong><code>B減樹</code></strong> 摟!  </p>
@@ -249,6 +250,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Database/" rel="tag"># Database</a>
+          </div>
 
         
 
@@ -338,20 +342,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
