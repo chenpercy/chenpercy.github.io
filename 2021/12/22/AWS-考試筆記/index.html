@@ -21,20 +21,20 @@
     var CONFIG = {"hostname":"chenpercy.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="出處:Leetcode Week 4: Jan. 22nd - Jan. 28th 題目:給定兩字串，並根據以下兩條規則進行操作，則這兩字串視為密切相似的">
+  <meta name="description" content="前言這篇文章是準備 AWS SAA-C02 考試所記錄的筆記。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Determine if Two Strings Are Close">
-<meta property="og:url" content="https://chenpercy.github.io/2021/01/25/leetcode-determine-if-two-strings-are-close/index.html">
+<meta property="og:title" content="AWS 考試筆記">
+<meta property="og:url" content="https://chenpercy.github.io/2021/12/22/AWS-%E8%80%83%E8%A9%A6%E7%AD%86%E8%A8%98/index.html">
 <meta property="og:site_name" content="Percy&#39;s blog">
-<meta property="og:description" content="出處:Leetcode Week 4: Jan. 22nd - Jan. 28th 題目:給定兩字串，並根據以下兩條規則進行操作，則這兩字串視為密切相似的">
+<meta property="og:description" content="前言這篇文章是準備 AWS SAA-C02 考試所記錄的筆記。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-01-24T16:33:35.000Z">
-<meta property="article:modified_time" content="2021-12-03T01:57:04.424Z">
+<meta property="article:published_time" content="2021-12-22T04:00:01.000Z">
+<meta property="article:modified_time" content="2021-12-22T08:14:13.992Z">
 <meta property="article:author" content="Percy Chen">
-<meta property="article:tag" content="Leetcode">
+<meta property="article:tag" content="Engineer,Game,Music,Twitch">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://chenpercy.github.io/2021/01/25/leetcode-determine-if-two-strings-are-close/">
+<link rel="canonical" href="https://chenpercy.github.io/2021/12/22/AWS-%E8%80%83%E8%A9%A6%E7%AD%86%E8%A8%98/">
 
 
 <script id="page-configurations">
@@ -47,7 +47,7 @@
   };
 </script>
 
-  <title>Determine if Two Strings Are Close | Percy's blog</title>
+  <title>AWS 考試筆記 | Percy's blog</title>
   
 
 
@@ -163,7 +163,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://chenpercy.github.io/2021/01/25/leetcode-determine-if-two-strings-are-close/">
+    <link itemprop="mainEntityOfPage" href="https://chenpercy.github.io/2021/12/22/AWS-%E8%80%83%E8%A9%A6%E7%AD%86%E8%A8%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars.githubusercontent.com/u/11907183?s=400&u=a00a5c105d9c91dffcf7b5afb61dcf1ab9794973&v=4">
@@ -176,7 +176,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Determine if Two Strings Are Close
+          AWS 考試筆記
         </h1>
 
         <div class="post-meta">
@@ -185,23 +185,17 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2021-01-25 00:33:35" itemprop="dateCreated datePublished" datetime="2021-01-25T00:33:35+08:00">2021-01-25</time>
+              <time title="Created: 2021-12-22 12:00:01 / Modified: 16:14:13" itemprop="dateCreated datePublished" datetime="2021-12-22T12:00:01+08:00">2021-12-22</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-12-03 09:57:04" itemprop="dateModified" datetime="2021-12-03T09:57:04+08:00">2021-12-03</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Problem-Solving/" itemprop="url" rel="index"><span itemprop="name">Problem Solving</span></a>
+                  <a href="/categories/AWS/" itemprop="url" rel="index"><span itemprop="name">AWS</span></a>
                 </span>
             </span>
 
@@ -216,31 +210,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="出處"><a href="#出處" class="headerlink" title="出處:"></a>出處:</h1><p>Leetcode Week 4: Jan. 22nd - Jan. 28th</p>
-<h1 id="題目"><a href="#題目" class="headerlink" title="題目:"></a>題目:</h1><p>給定兩字串，並根據以下兩條規則進行操作，則這兩字串視為密切相似的</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>這篇文章是準備 AWS SAA-C02 考試所記錄的筆記。</p>
 <span id="more"></span>
-<ul>
-<li>  任意交換兩個 <strong>已存在的</strong> 字元，也就是說 <em>abcde -&gt; aecdb</em></li>
-<li>  轉換任意 <strong>已存在的</strong> 的字元為另一個 <strong>以存在的</strong> 字元，也就是說 <em>abbcd -&gt; addcb</em> (注意! 相同的字元都要做轉換)</li>
-</ul>
-<p>給定兩字串 word1、word2，如果 word1 與 word2 是密切的(close)則回傳 <code>true</code>，否則回傳 <code>false</code></p>
-<h4 id="範例1"><a href="#範例1" class="headerlink" title="範例1:"></a>範例1:</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: word1 = &quot;abc&quot;, word2 = &quot;bca&quot;</span><br><span class="line">Output: true</span><br><span class="line">理由: word1 經過兩次操作能變成 word2</span><br><span class="line">Apply Operation 1: &quot;abc&quot; -&gt; &quot;acb&quot;</span><br><span class="line">Apply Operation 1: &quot;acb&quot; -&gt; &quot;bca&quot;</span><br></pre></td></tr></table></figure>
 
-<h4 id="範例2"><a href="#範例2" class="headerlink" title="範例2:"></a>範例2:</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: word1 = &quot;cabbba&quot;, word2 = &quot;aabbcc&quot;</span><br><span class="line">Output: false</span><br><span class="line">理由: word1 不可能變成 word2</span><br></pre></td></tr></table></figure>
-
-<h4 id="限制"><a href="#限制" class="headerlink" title="限制:"></a>限制:</h4><ul>
-<li><p>  <code>1 &lt;= word1.length, word2.length &lt;= 105</code></p>
-</li>
-<li><p>  字串 word1 及 word2 都只有小寫英文字母</p>
-</li>
-</ul>
-<h1 id="解題"><a href="#解題" class="headerlink" title="解題:"></a>解題:</h1><p>條件1相對單純，這題主要判斷如何讓 操作2 的條件成立，其實只要去判斷兩字串中，字母分布率是否相同即可</p>
-<p>也就是說，假如兩字串是 cabbba、abbccc，你會發現兩字串字母分布率相同，分別是 {“c”: 1, “b”: 3, “a”: 2} 及 {“c”: 3, “b”: 2, “a”: 1} (都是 1、2、3)；也可以加上一些判斷邏輯略過根本不需要計算分母分布率的情況</p>
-<p>附上程式碼:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">closeStrings</span>(<span class="params">self, word1: <span class="built_in">str</span>, word2: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(word1) != <span class="built_in">len</span>(word2):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">elif</span> <span class="built_in">set</span>(word1) != <span class="built_in">set</span>(word2):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        word1\_<span class="built_in">dict</span> = defaultdict(<span class="built_in">int</span>)</span><br><span class="line">        word2\_<span class="built_in">dict</span> = defaultdict(<span class="built_in">int</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> word1:</span><br><span class="line">            word1\_<span class="built_in">dict</span>\[word\] += <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> word2:</span><br><span class="line">            word2\_<span class="built_in">dict</span>\[word\] += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">sorted</span>(word1\_<span class="built_in">dict</span>.values()) != <span class="built_in">sorted</span>(word2\_<span class="built_in">dict</span>.values()):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
-<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference:"></a>Reference:</h1><ol>
-<li> <a target="_blank" rel="noopener" href="https://leetcode.com/explore/featured/card/january-leetcoding-challenge-2021/582/week-4-january-22nd-january-28th/3613/">Determine if Two Strings Are Close</a></li>
+<h1 id="本文"><a href="#本文" class="headerlink" title="本文"></a>本文</h1><h2 id="CloudFront"><a href="#CloudFront" class="headerlink" title="CloudFront"></a>CloudFront</h2><p>CloudFront 是一項內容交付網路 Content delivery network (CDN) 服務，專為實現高效能、安全性和開發人員便利性而建置。</p>
+<p>CloudFront 可提供 Singed URL or Signed Cookie，用來控制誰可以存取該內容</p>
+<h2 id="S3"><a href="#S3" class="headerlink" title="S3"></a>S3</h2><p>避免 S3 誤刪的狀況</p>
+<ol>
+<li>啟用 Verionsing</li>
+<li>啟用多重認證 MFA (Multi-Factor Authentication)</li>
 </ol>
+<h2 id="WorkDocs"><a href="#WorkDocs" class="headerlink" title="WorkDocs"></a>WorkDocs</h2><p>WorkDocs 是全受管的安全內容建立、儲存和協作服務。透過此服務可以輕鬆地建立、編輯和共享內容，而且因為其集中存放在 AWS，可以從任何地方的任何裝置存取內容。</p>
+<h2 id="ECS"><a href="#ECS" class="headerlink" title="ECS"></a>ECS</h2><p>可以將機密資料儲存在 AWS Secrets Manager secrets 或是 AWS Systems Manager Parameter Store parameters，並引用至 container 內。</p>
+<h2 id="Macie"><a href="#Macie" class="headerlink" title="Macie"></a>Macie</h2><p>Macie 是一個全受管資料安全和資料隱私服務，利用機器學習和模式比對來探索和保護 AWS 中的敏感資料。</p>
+<h2 id="GuardDuty"><a href="#GuardDuty" class="headerlink" title="GuardDuty"></a>GuardDuty</h2><p>GuardDuty 是一種威脅偵測服務，可持續監控您的 AWS 帳戶和工作負載是否有惡意活動，並提供詳細的安全問題清單以了解及進行修復</p>
+<h2 id="Inspector"><a href="#Inspector" class="headerlink" title="Inspector"></a>Inspector</h2><p>Inspector 是一項自動化漏洞管理服務，可不斷掃描 AWS 工作負載以尋找軟體漏洞和意外網路風險。</p>
 
     </div>
 
@@ -249,9 +233,6 @@
     
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Leetcode/" rel="tag"># Leetcode</a>
-          </div>
 
         
 
@@ -259,13 +240,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2018/11/24/%E6%96%B0%E9%AE%AE%E4%BA%BA-my-interview-nov-18/" rel="prev" title="新鮮人面試 My Interview  at Nov. 18">
-      <i class="fa fa-chevron-left"></i> 新鮮人面試 My Interview  at Nov. 18
+    <a href="/2021/12/01/ElasticSearch-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-Part5-text-analysis/" rel="prev" title="ElasticSearch 學習紀錄 Part5 - text analysis">
+      <i class="fa fa-chevron-left"></i> ElasticSearch 學習紀錄 Part5 - text analysis
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/09/30/python-%E5%9F%BA%E7%A4%8E%E6%A6%82%E5%BF%B5-function/" rel="next" title="Python 基礎概念 - function">
-      Python 基礎概念 - function <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -325,7 +303,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%BA%E8%99%95"><span class="nav-number">1.</span> <span class="nav-text">出處:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A1%8C%E7%9B%AE"><span class="nav-number">2.</span> <span class="nav-text">題目:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AF%84%E4%BE%8B1"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">範例1:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AF%84%E4%BE%8B2"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">範例2:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%99%90%E5%88%B6"><span class="nav-number">2.0.0.3.</span> <span class="nav-text">限制:</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E9%A1%8C"><span class="nav-number">3.</span> <span class="nav-text">解題:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference:</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%AC%E6%96%87"><span class="nav-number">2.</span> <span class="nav-text">本文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CloudFront"><span class="nav-number">2.1.</span> <span class="nav-text">CloudFront</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#S3"><span class="nav-number">2.2.</span> <span class="nav-text">S3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WorkDocs"><span class="nav-number">2.3.</span> <span class="nav-text">WorkDocs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ECS"><span class="nav-number">2.4.</span> <span class="nav-text">ECS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Macie"><span class="nav-number">2.5.</span> <span class="nav-text">Macie</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GuardDuty"><span class="nav-number">2.6.</span> <span class="nav-text">GuardDuty</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Inspector"><span class="nav-number">2.7.</span> <span class="nav-text">Inspector</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -482,7 +460,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'chenpercy.github.io',
       owner       : 'chenpercy',
       admin       : ['chenpercy'],
-      id          : '08dd37094d906ba8e6f227baa6595070',
+      id          : '6402bcc45dd1b907246271330475d75d',
         language: '',
       distractionFreeMode: true
     });
