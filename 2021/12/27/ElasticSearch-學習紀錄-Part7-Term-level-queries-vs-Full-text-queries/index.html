@@ -21,20 +21,20 @@
     var CONFIG = {"hostname":"chenpercy.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="這篇文章內容主要探討 Git 相似的名詞，記錄下來避免未來忘記    master 及 origin&#x2F;master    fetch 及 pull   rebase 及 merge">
+  <meta name="description" content="前言這篇文章是出自於線上課程 Complete Guide to Elasticsearch 的所記錄的筆記。 這一篇文章要來比較 ElasticSearch term &amp; match 之間的差異。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git 細節">
-<meta property="og:url" content="https://chenpercy.github.io/2018/11/24/git-%E7%B4%B0%E7%AF%80/index.html">
+<meta property="og:title" content="ElasticSearch 學習紀錄 Part7 - Term level queries vs Full text queries">
+<meta property="og:url" content="https://chenpercy.github.io/2021/12/27/ElasticSearch-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-Part7-Term-level-queries-vs-Full-text-queries/index.html">
 <meta property="og:site_name" content="Percy&#39;s blog">
-<meta property="og:description" content="這篇文章內容主要探討 Git 相似的名詞，記錄下來避免未來忘記    master 及 origin&#x2F;master    fetch 及 pull   rebase 及 merge">
+<meta property="og:description" content="前言這篇文章是出自於線上課程 Complete Guide to Elasticsearch 的所記錄的筆記。 這一篇文章要來比較 ElasticSearch term &amp; match 之間的差異。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2018-11-24T03:58:58.000Z">
-<meta property="article:modified_time" content="2021-12-03T01:55:39.660Z">
+<meta property="article:published_time" content="2021-12-27T09:09:27.000Z">
+<meta property="article:modified_time" content="2021-12-27T10:09:33.530Z">
 <meta property="article:author" content="Percy Chen">
-<meta property="article:tag" content="Git">
+<meta property="article:tag" content="Engineer,Game,Music,Twitch">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://chenpercy.github.io/2018/11/24/git-%E7%B4%B0%E7%AF%80/">
+<link rel="canonical" href="https://chenpercy.github.io/2021/12/27/ElasticSearch-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-Part7-Term-level-queries-vs-Full-text-queries/">
 
 
 <script id="page-configurations">
@@ -47,7 +47,7 @@
   };
 </script>
 
-  <title>Git 細節 | Percy's blog</title>
+  <title>ElasticSearch 學習紀錄 Part7 - Term level queries vs Full text queries | Percy's blog</title>
   
 
 
@@ -163,7 +163,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://chenpercy.github.io/2018/11/24/git-%E7%B4%B0%E7%AF%80/">
+    <link itemprop="mainEntityOfPage" href="https://chenpercy.github.io/2021/12/27/ElasticSearch-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-Part7-Term-level-queries-vs-Full-text-queries/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars.githubusercontent.com/u/11907183?s=400&u=a00a5c105d9c91dffcf7b5afb61dcf1ab9794973&v=4">
@@ -176,7 +176,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Git 細節
+          ElasticSearch 學習紀錄 Part7 - Term level queries vs Full text queries
         </h1>
 
         <div class="post-meta">
@@ -185,23 +185,17 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2018-11-24 11:58:58" itemprop="dateCreated datePublished" datetime="2018-11-24T11:58:58+08:00">2018-11-24</time>
+              <time title="Created: 2021-12-27 17:09:27 / Modified: 18:09:33" itemprop="dateCreated datePublished" datetime="2021-12-27T17:09:27+08:00">2021-12-27</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-12-03 09:55:39" itemprop="dateModified" datetime="2021-12-03T09:55:39+08:00">2021-12-03</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Engineer/" itemprop="url" rel="index"><span itemprop="name">Engineer</span></a>
+                  <a href="/categories/ElasticSearch/" itemprop="url" rel="index"><span itemprop="name">ElasticSearch</span></a>
                 </span>
             </span>
 
@@ -216,30 +210,30 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>這篇文章內容主要探討 Git 相似的名詞，記錄下來避免未來忘記</p>
-<ul>
-<li>  <strong>master</strong> 及 <strong>origin/master</strong> </li>
-<li>  <strong>fetch</strong> 及 <strong>pull</strong></li>
-<li>  <strong>rebase</strong> 及 <strong>merge</strong></li>
-</ul>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>這篇文章是出自於線上課程 <a target="_blank" rel="noopener" href="https://www.udemy.com/course/elasticsearch-complete-guide/">Complete Guide to Elasticsearch</a> 的所記錄的筆記。</p>
+<p>這一篇文章要來比較 ElasticSearch term &amp; match 之間的差異。</p>
 <span id="more"></span>
 
-<h3 id="master-vs-origin-master"><a href="#master-vs-origin-master" class="headerlink" title="master vs. origin/master"></a><strong>master vs. origin/master</strong></h3><p>master: 本地端分支<br>origin/master: 遠端分支</p>
-<p>更白話的說，本地端有一個 master 分支，當我們進行 git push，會複製一份本地端 master 到遠端 origin ，也就是 <strong>origin/master</strong> 分支囉!</p>
-<h3 id="fetch-vs-pull"><a href="#fetch-vs-pull" class="headerlink" title="fetch vs. pull"></a><strong>fetch vs. pull</strong></h3><p>fetch: 從 remote repository 取得最新的版本，這裡舉動同時會自動建立分支<strong>FETCH_HEAD</strong>，而這被撈下來的版本會自動放進此分支<br>pull: 從 remote repository 取得最新的版本並直接將遠端分支 <strong>origin/master</strong> 進行<strong>合併</strong>提交</p>
-<p>一個 <strong>pull</strong> 等同於 <br>1. <strong>fetch</strong> <br>2. <strong>merge</strong> origin/master  </p>
-<h3 id="rebase-vs-merge"><a href="#rebase-vs-merge" class="headerlink" title="rebase vs. merge"></a><strong>rebase vs. merge</strong></h3><p>假設，目前我們有兩個分支 A、B，且此時我們在 <strong>分支 B</strong></p>
-<p>rebase: 將 A 當作基底，並將 B分支 的內容嫁接在 分支A 後方 (兩條變一條的概念)，值得注意的一點是，因為 <strong>提交位置</strong> 更動了，所以 <strong>SHA-1</strong> 會重新計算!<br>merge: 將 A 合併進分支 B，並產生一個額外的 <strong>提交</strong></p>
-<hr>
-<h1 id="reference"><a href="#reference" class="headerlink" title="reference:"></a>reference:</h1><ul>
-<li>  <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/18137175/in-git-what-is-the-difference-between-origin-master-vs-origin-master">master vs. origin/master</a></li>
-<li>  <a target="_blank" rel="noopener" href="https://backlog.com/git-tutorial/tw/stepup/stepup3_2.html">Fetch vs. pull</a></li>
-<li>rebase vs. merge<ul>
-<li>  <a target="_blank" rel="noopener" href="https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing">Golden Rule of Rebasing</a></li>
-<li>  <a target="_blank" rel="noopener" href="https://gitbook.tw/chapters/branch/merge-with-rebase.html">Rebase 圖文並茂</a></li>
-</ul>
-</li>
-</ul>
+<h1 id="本文"><a href="#本文" class="headerlink" title="本文"></a>本文</h1><h2 id="Term"><a href="#Term" class="headerlink" title="Term"></a>Term</h2><blockquote>
+<p>term 在進行搜尋時，不會先對字句做分析<br>通常使用在精確比對中，像是數字、日期及關鍵字。</p>
+</blockquote>
+<p>二話不說，直接看範例</p>
+<p>E.g.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">GET /analyzer_test/_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">    &quot;term&quot;: &#123;</span><br><span class="line">      &quot;description&quot;: &#123;</span><br><span class="line">        &quot;value&quot;: &quot;dog&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面這種寫法，可以把 <code>value: ...</code> 簡化成下面這樣子</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET /analyzer_test/_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">    &quot;term&quot;: &#123;</span><br><span class="line">      &quot;description&quot;: &quot;dog&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面兩種得到的結果會是相同的。</p>
+<h3 id="透過-Multi-terms-搜尋"><a href="#透過-Multi-terms-搜尋" class="headerlink" title="透過 Multi terms 搜尋"></a>透過 Multi terms 搜尋</h3><blockquote>
+<p>透過 term 搜尋，欄位使用 keyword 的效果會更好</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">GET /analyzer_test/_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">    &quot;terms&quot;: &#123;</span><br><span class="line">      &quot;test.keyword&quot;: [</span><br><span class="line">          &quot;Brunch&quot;,</span><br><span class="line">          &quot;Dinner&quot;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="取得-id-取得特定資料"><a href="#取得-id-取得特定資料" class="headerlink" title="取得 id 取得特定資料"></a>取得 id 取得特定資料</h3><p>做法相當單純，而且可以一次使用多筆 id 來搜尋</p>
+<p>E.g.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET /analyzer_test/_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">    &quot;ids&quot;: &#123;</span><br><span class="line">      &quot;values&quot;: [&quot;EQlV-30BeiHXdjTuKITq&quot;, &quot;eBhV-30BH9MdJOJuGEIo&quot;]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;took&quot; : 0,</span><br><span class="line">  &quot;timed_out&quot; : false,</span><br><span class="line">  &quot;_shards&quot; : &#123;</span><br><span class="line">    &quot;total&quot; : 1,</span><br><span class="line">    &quot;successful&quot; : 1,</span><br><span class="line">    &quot;skipped&quot; : 0,</span><br><span class="line">    &quot;failed&quot; : 0</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;hits&quot; : &#123;</span><br><span class="line">    &quot;total&quot; : &#123;</span><br><span class="line">      &quot;value&quot; : 2,</span><br><span class="line">      &quot;relation&quot; : &quot;eq&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;max_score&quot; : 1.0,</span><br><span class="line">    &quot;hits&quot; : [</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;_index&quot; : &quot;analyzer_test&quot;,</span><br><span class="line">        &quot;_type&quot; : &quot;_doc&quot;,</span><br><span class="line">        &quot;_id&quot; : &quot;eBhV-30BH9MdJOJuGEIo&quot;,</span><br><span class="line">        &quot;_score&quot; : 1.0,</span><br><span class="line">        &quot;_source&quot; : &#123;</span><br><span class="line">          &quot;test&quot; : &quot;Brunch&quot;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;_index&quot; : &quot;analyzer_test&quot;,</span><br><span class="line">        &quot;_type&quot; : &quot;_doc&quot;,</span><br><span class="line">        &quot;_id&quot; : &quot;EQlV-30BeiHXdjTuKITq&quot;,</span><br><span class="line">        &quot;_score&quot; : 1.0,</span><br><span class="line">        &quot;_source&quot; : &#123;</span><br><span class="line">          &quot;test&quot; : &quot;Dinner&quot;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -248,9 +242,6 @@
     
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Git/" rel="tag"># Git</a>
-          </div>
 
         
 
@@ -258,13 +249,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2018/11/22/%E5%89%8D%E5%BE%80%E5%85%A8%E7%AB%AF%E4%B9%8B%E8%B7%AF-%E7%B6%B2%E9%A0%81%E9%81%8B%E4%BD%9C/" rel="prev" title="前往全端之路 - 網頁運作">
-      <i class="fa fa-chevron-left"></i> 前往全端之路 - 網頁運作
+    <a href="/2021/12/24/ElasticSearch-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-Part6-searching/" rel="prev" title="ElasticSearch 學習紀錄 Part6 - searching">
+      <i class="fa fa-chevron-left"></i> ElasticSearch 學習紀錄 Part6 - searching
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2018/11/24/%E6%96%B0%E9%AE%AE%E4%BA%BA-my-interview-nov-18/" rel="next" title="新鮮人面試 My Interview  at Nov. 18">
-      新鮮人面試 My Interview  at Nov. 18 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -324,7 +312,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#master-vs-origin-master"><span class="nav-number">1.</span> <span class="nav-text">master vs. origin&#x2F;master</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fetch-vs-pull"><span class="nav-number">2.</span> <span class="nav-text">fetch vs. pull</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rebase-vs-merge"><span class="nav-number">3.</span> <span class="nav-text">rebase vs. merge</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reference"><span class="nav-number"></span> <span class="nav-text">reference:</span></a></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%AC%E6%96%87"><span class="nav-number">2.</span> <span class="nav-text">本文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Term"><span class="nav-number">2.1.</span> <span class="nav-text">Term</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%8F%E9%81%8E-Multi-terms-%E6%90%9C%E5%B0%8B"><span class="nav-number">2.1.1.</span> <span class="nav-text">透過 Multi terms 搜尋</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%96%E5%BE%97-id-%E5%8F%96%E5%BE%97%E7%89%B9%E5%AE%9A%E8%B3%87%E6%96%99"><span class="nav-number">2.1.2.</span> <span class="nav-text">取得 id 取得特定資料</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -481,7 +469,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'chenpercy.github.io',
       owner       : 'chenpercy',
       admin       : ['chenpercy'],
-      id          : '4277c2cfaa63f407580df0a6b2beeb5f',
+      id          : '8435870ded1ecde13552e8b875422844',
         language: '',
       distractionFreeMode: true
     });
