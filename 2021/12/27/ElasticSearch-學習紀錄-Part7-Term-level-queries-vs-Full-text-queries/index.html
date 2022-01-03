@@ -30,7 +30,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://chenpercy.github.io/2021/12/27/ElasticSearch-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-Part7-Term-level-queries-vs-Full-text-queries/term1.png">
 <meta property="article:published_time" content="2021-12-27T09:09:27.000Z">
-<meta property="article:modified_time" content="2021-12-28T08:22:44.260Z">
+<meta property="article:modified_time" content="2021-12-29T07:33:15.763Z">
 <meta property="article:author" content="Percy Chen">
 <meta property="article:tag" content="Engineer,Game,Music,Twitch">
 <meta name="twitter:card" content="summary">
@@ -195,7 +195,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-12-28 16:22:44" itemprop="dateModified" datetime="2021-12-28T16:22:44+08:00">2021-12-28</time>
+                <time title="Modified: 2021-12-29 15:33:15" itemprop="dateModified" datetime="2021-12-29T15:33:15+08:00">2021-12-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -287,17 +287,43 @@
 <p>因為這兩筆資料的開頭都是 <strong>Red</strong>，我們可以透過 <code>prefix</code> 來幫助我們找到這些資料</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET /analyzer_test/_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">    &quot;prefix&quot;: &#123;</span><br><span class="line">      &quot;tags.keyword&quot;: &quot;Red&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="Wildcard"><a href="#Wildcard" class="headerlink" title="Wildcard"></a>Wildcard</h3><p>ES 也支援透過 wildcard 的方式來搜尋特定的資料。</p>
+<h3 id="wildcard"><a href="#wildcard" class="headerlink" title="wildcard"></a>wildcard</h3><p>ES 也支援透過 wildcard 的方式來搜尋特定的資料。</p>
 <p>E.g.</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET /analyzer_test/_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">    &quot;wildcard&quot;: &#123;</span><br><span class="line">      &quot;tags.keyword&quot;: &quot;Re*&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>因為 wildcard 在搜尋時會遍巡該欄位的資料，如果 * or ? 放在字首來搜尋的話，效能會變差。</p>
 </blockquote>
-<h3 id="Regexp"><a href="#Regexp" class="headerlink" title="Regexp"></a>Regexp</h3><p>ES 支援透過 regular expression (Regex) 的方式來搜尋特定的資料。</p>
+<h3 id="regexp"><a href="#regexp" class="headerlink" title="regexp"></a>regexp</h3><p>ES 支援透過 regular expression (Regex) 的方式來搜尋特定的資料。</p>
 <p>E.g.</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET /analyzer_test/_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">    &quot;regexp&quot;: &#123;</span><br><span class="line">      &quot;tags.keyword&quot;: &quot;R.*&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>Elastic 使用的是 Lucene’s regular expression engine，所以部分 Regex 的功能並不支援。 </p>
+</blockquote>
+<h2 id="Match"><a href="#Match" class="headerlink" title="Match"></a>Match</h2><p>在 ES 中， query type <code>match</code> 用來做 full text query</p>
+<p>E.g.</p>
+<p>搜尋 title 裡頭有符合搜尋內容的資料</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET /analyzer_test/_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">    &quot;match&quot;: &#123;</span><br><span class="line">      &quot;title&quot;: &quot;Cat&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>透過 match 尋找的結果會被分析，也會得到相對應的分數</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;took&quot; : 791,</span><br><span class="line">  &quot;timed_out&quot; : false,</span><br><span class="line">  &quot;_shards&quot; : &#123;</span><br><span class="line">    &quot;total&quot; : 1,</span><br><span class="line">    &quot;successful&quot; : 1,</span><br><span class="line">    &quot;skipped&quot; : 0,</span><br><span class="line">    &quot;failed&quot; : 0</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;hits&quot; : &#123;</span><br><span class="line">    &quot;total&quot; : &#123;</span><br><span class="line">      &quot;value&quot; : 2,</span><br><span class="line">      &quot;relation&quot; : &quot;eq&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;max_score&quot; : 0.25069216,</span><br><span class="line">    &quot;hits&quot; : [</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;_index&quot; : &quot;analyzer_test&quot;,</span><br><span class="line">        &quot;_type&quot; : &quot;_doc&quot;,</span><br><span class="line">        &quot;_id&quot; : &quot;KBhPBH4BH9MdJOJu9UMH&quot;,</span><br><span class="line">        &quot;_score&quot; : 0.25069216,</span><br><span class="line">        &quot;_source&quot; : &#123;</span><br><span class="line">          &quot;title&quot; : &quot;Dog and Cat and Cat&quot;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;_index&quot; : &quot;analyzer_test&quot;,</span><br><span class="line">        &quot;_type&quot; : &quot;_doc&quot;,</span><br><span class="line">        &quot;_id&quot; : &quot;FglQBH4BeiHXdjTu_YRA&quot;,</span><br><span class="line">        &quot;_score&quot; : 0.18232156,</span><br><span class="line">        &quot;_source&quot; : &#123;</span><br><span class="line">          &quot;title&quot; : &quot;Dog and Horse and Cat&quot;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>match 預設使用的 opreator 是 <code>or</code>，可以修改 operator 來改變搜尋模式。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">GET /analyzer_test/_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">    &quot;match&quot;: &#123;</span><br><span class="line">      &quot;title&quot;: &#123;</span><br><span class="line">        &quot;query&quot;: &quot;dog is cat&quot;,</span><br><span class="line">        &quot;operator&quot;: &quot;and&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>因為使用 <strong>and</strong>，所以預期 query 的內容都要出現 dog &amp; is &amp; cat，但 title 裡面沒有出現 <strong>is</strong>，因此資料就算有 dog &amp; cat，也不會顯示出來。</p>
+<hr>
+<p>如果希望字句是按照順序的呈現，可以使用 <code>match_phrase</code></p>
+<p>E.g.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">GET /analyzer_test/_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">    &quot;match_phrase&quot;: &#123;</span><br><span class="line">      &quot;title&quot;: &quot;dog and cat&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>若是希望在不同的欄位同時找到同一個字，可以使用 <code>multi_match</code>。</p>
+<p>E.g.</p>
+<p>要在欄位 <strong>title</strong> 及 <strong>description</strong> 找到 cat &amp; dog。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">GET /analyzer_test/_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">    &quot;multi_match&quot;: &#123;</span><br><span class="line">      &quot;query&quot;: &quot;cat dog&quot;,</span><br><span class="line">      &quot;fields&quot;: [&quot;title&quot;, &quot;description&quot;]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>假如搜尋的字有兩個，兩個字出現在同一個欄位的分數與任一個字出現在其中一個欄位，前者的分數會比較高，而且 multi_match 也會選用分數較高的。</p>
 </blockquote>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
 <li><a target="_blank" rel="noopener" href="https://www.udemy.com/course/elasticsearch-complete-guide/">Complete Guide to Elasticsearch</a></li>
@@ -320,7 +346,10 @@
     <a href="/2021/12/24/ElasticSearch-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-Part6-searching/" rel="prev" title="ElasticSearch 學習紀錄 Part6 - searching">
       <i class="fa fa-chevron-left"></i> ElasticSearch 學習紀錄 Part6 - searching
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/01/03/ElasticSearch-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-Part8-boolean-query/" rel="next" title="ElasticSearch 學習紀錄 Part8 - boolean query">
+      ElasticSearch 學習紀錄 Part8 - boolean query <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -380,7 +409,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%AC%E6%96%87"><span class="nav-number">2.</span> <span class="nav-text">本文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Term"><span class="nav-number">2.1.</span> <span class="nav-text">Term</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#terms"><span class="nav-number">2.1.1.</span> <span class="nav-text">terms</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ids"><span class="nav-number">2.1.2.</span> <span class="nav-text">ids</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gte-gt-lte-lt"><span class="nav-number">2.1.3.</span> <span class="nav-text">gte, gt, lte, lt</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#numeric"><span class="nav-number">2.1.3.1.</span> <span class="nav-text">numeric</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Date"><span class="nav-number">2.1.3.2.</span> <span class="nav-text">Date</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Non-null-value"><span class="nav-number">2.1.4.</span> <span class="nav-text">Non null value</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prefix"><span class="nav-number">2.1.5.</span> <span class="nav-text">Prefix</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Wildcard"><span class="nav-number">2.1.6.</span> <span class="nav-text">Wildcard</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Regexp"><span class="nav-number">2.1.7.</span> <span class="nav-text">Regexp</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%AC%E6%96%87"><span class="nav-number">2.</span> <span class="nav-text">本文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Term"><span class="nav-number">2.1.</span> <span class="nav-text">Term</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#terms"><span class="nav-number">2.1.1.</span> <span class="nav-text">terms</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ids"><span class="nav-number">2.1.2.</span> <span class="nav-text">ids</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gte-gt-lte-lt"><span class="nav-number">2.1.3.</span> <span class="nav-text">gte, gt, lte, lt</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#numeric"><span class="nav-number">2.1.3.1.</span> <span class="nav-text">numeric</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Date"><span class="nav-number">2.1.3.2.</span> <span class="nav-text">Date</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Non-null-value"><span class="nav-number">2.1.4.</span> <span class="nav-text">Non null value</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prefix"><span class="nav-number">2.1.5.</span> <span class="nav-text">Prefix</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wildcard"><span class="nav-number">2.1.6.</span> <span class="nav-text">wildcard</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#regexp"><span class="nav-number">2.1.7.</span> <span class="nav-text">regexp</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Match"><span class="nav-number">2.2.</span> <span class="nav-text">Match</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -396,7 +425,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -453,7 +482,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
