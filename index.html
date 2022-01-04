@@ -160,6 +160,83 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://chenpercy.github.io/2022/01/04/ElasticSearch-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-Part9-Join-Queries/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/11907183?s=400&u=a00a5c105d9c91dffcf7b5afb61dcf1ab9794973&v=4">
+      <meta itemprop="name" content="Percy Chen">
+      <meta itemprop="description" content="大家好我是 Percy，目前是一名軟體工程師，同時也是 Twitch 遊戲實況主 「薄餡」。這個網站主要分享技術、遊戲、音樂以及一些人生經歷。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Percy's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/04/ElasticSearch-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-Part9-Join-Queries/" class="post-title-link" itemprop="url">ElasticSearch 學習紀錄 Part9 - Join Queries</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-01-04 10:27:10 / Modified: 17:27:42" itemprop="dateCreated datePublished" datetime="2022-01-04T10:27:10+08:00">2022-01-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ElasticSearch/" itemprop="url" rel="index"><span itemprop="name">ElasticSearch</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>這篇文章是出自於線上課程 <a target="_blank" rel="noopener" href="https://www.udemy.com/course/elasticsearch-complete-guide/">Complete Guide to Elasticsearch</a> 的所記錄的筆記。</p>
+<p>這篇文章使用的 ES 版本為 <code>7.16.2</code></p>
+<p>這一篇文章要來介紹如何透過 Elastic 的 join queries 來達成與 RDBMS 一樣 join 兩張 table 的效果。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/01/04/ElasticSearch-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-Part9-Join-Queries/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://chenpercy.github.io/2022/01/03/ElasticSearch-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-Part8-boolean-query/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -185,7 +262,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-01-03 15:21:42 / Modified: 17:25:58" itemprop="dateCreated datePublished" datetime="2022-01-03T15:21:42+08:00">2022-01-03</time>
+              <time title="Created: 2022-01-03 15:21:42 / Modified: 17:34:12" itemprop="dateCreated datePublished" datetime="2022-01-03T15:21:42+08:00">2022-01-03</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -267,7 +344,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-12-29 15:33:15" itemprop="dateModified" datetime="2021-12-29T15:33:15+08:00">2021-12-29</time>
+                <time title="Modified: 2022-01-03 17:34:12" itemprop="dateModified" datetime="2022-01-03T17:34:12+08:00">2022-01-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -868,91 +945,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://chenpercy.github.io/2021/11/16/aws-networking-part7-vpc/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/11907183?s=400&u=a00a5c105d9c91dffcf7b5afb61dcf1ab9794973&v=4">
-      <meta itemprop="name" content="Percy Chen">
-      <meta itemprop="description" content="大家好我是 Percy，目前是一名軟體工程師，同時也是 Twitch 遊戲實況主 「薄餡」。這個網站主要分享技術、遊戲、音樂以及一些人生經歷。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Percy's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/11/16/aws-networking-part7-vpc/" class="post-title-link" itemprop="url">AWS Networking 學習紀錄 part7 - VPC</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-11-16 17:29:09" itemprop="dateCreated datePublished" datetime="2021-11-16T17:29:09+08:00">2021-11-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-11-24 10:08:11" itemprop="dateModified" datetime="2021-11-24T10:08:11+08:00">2021-11-24</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/AWS/" itemprop="url" rel="index"><span itemprop="name">AWS</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>這篇文章是出自於線上課程 <a target="_blank" rel="noopener" href="https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c02/">Ultimate AWS Certified Solutions Architect Associate</a> 的所記錄的筆記。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/11/16/aws-networking-part7-vpc/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1020,7 +1016,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
