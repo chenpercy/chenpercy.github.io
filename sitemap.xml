@@ -284,7 +284,7 @@
   </url>
   
   <url>
-    <loc>https://chenpercy.github.io/tags/Django/</loc>
+    <loc>https://chenpercy.github.io/tags/RDS/</loc>
     <lastmod>2022-01-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -312,6 +312,20 @@
   </url>
   
   <url>
+    <loc>https://chenpercy.github.io/tags/Django/</loc>
+    <lastmod>2022-01-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenpercy.github.io/tags/DOS/</loc>
+    <lastmod>2022-01-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://chenpercy.github.io/tags/Git/</loc>
     <lastmod>2022-01-18</lastmod>
     <changefreq>daily</changefreq>
@@ -326,7 +340,7 @@
   </url>
   
   <url>
-    <loc>https://chenpercy.github.io/tags/RDS/</loc>
+    <loc>https://chenpercy.github.io/tags/murmur/</loc>
     <lastmod>2022-01-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -334,20 +348,6 @@
   
   <url>
     <loc>https://chenpercy.github.io/tags/Leetcode/</loc>
-    <lastmod>2022-01-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenpercy.github.io/tags/DOS/</loc>
-    <lastmod>2022-01-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenpercy.github.io/tags/murmur/</loc>
     <lastmod>2022-01-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -375,6 +375,13 @@
   </url>
   
   <url>
+    <loc>https://chenpercy.github.io/tags/%E6%8E%A8%E7%94%84/</loc>
+    <lastmod>2022-01-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://chenpercy.github.io/tags/Port/</loc>
     <lastmod>2022-01-18</lastmod>
     <changefreq>daily</changefreq>
@@ -395,24 +402,17 @@
     <priority>0.6</priority>
   </url>
   
-  <url>
-    <loc>https://chenpercy.github.io/tags/%E6%8E%A8%E7%94%84/</loc>
-    <lastmod>2022-01-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
 
   
   <url>
-    <loc>https://chenpercy.github.io/categories/AWS/</loc>
+    <loc>https://chenpercy.github.io/categories/ElasticSearch/</loc>
     <lastmod>2022-01-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://chenpercy.github.io/categories/ElasticSearch/</loc>
+    <loc>https://chenpercy.github.io/categories/AWS/</loc>
     <lastmod>2022-01-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -433,14 +433,14 @@
   </url>
   
   <url>
-    <loc>https://chenpercy.github.io/categories/Problem-Solving/</loc>
+    <loc>https://chenpercy.github.io/categories/mystory/</loc>
     <lastmod>2022-01-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://chenpercy.github.io/categories/mystory/</loc>
+    <loc>https://chenpercy.github.io/categories/Problem-Solving/</loc>
     <lastmod>2022-01-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -454,7 +454,7 @@
   </url>
   
   <url>
-    <loc>https://chenpercy.github.io/categories/Programming/</loc>
+    <loc>https://chenpercy.github.io/categories/Experience/</loc>
     <lastmod>2022-01-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -468,14 +468,14 @@
   </url>
   
   <url>
-    <loc>https://chenpercy.github.io/categories/Interview/</loc>
+    <loc>https://chenpercy.github.io/categories/Programming/</loc>
     <lastmod>2022-01-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://chenpercy.github.io/categories/Experience/</loc>
+    <loc>https://chenpercy.github.io/categories/Interview/</loc>
     <lastmod>2022-01-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
