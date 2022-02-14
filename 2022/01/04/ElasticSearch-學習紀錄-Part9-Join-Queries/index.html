@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://chenpercy.github.io/2022/01/04/ElasticSearch-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-Part9-Join-Queries/join3.png">
 <meta property="og:image" content="https://chenpercy.github.io/2022/01/04/ElasticSearch-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-Part9-Join-Queries/join4.png">
 <meta property="article:published_time" content="2022-01-04T02:27:10.000Z">
-<meta property="article:modified_time" content="2022-01-05T06:23:59.228Z">
+<meta property="article:modified_time" content="2022-02-10T07:23:40.263Z">
 <meta property="article:author" content="Percy Chen">
 <meta property="article:tag" content="Engineer,Game,Music,Twitch">
 <meta name="twitter:card" content="summary">
@@ -198,7 +198,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-01-05 14:23:59" itemprop="dateModified" datetime="2022-01-05T14:23:59+08:00">2022-01-05</time>
+                <time title="Modified: 2022-02-10 15:23:40" itemprop="dateModified" datetime="2022-02-10T15:23:40+08:00">2022-02-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -226,7 +226,7 @@
 <p>這一篇文章要來介紹如何透過 Elastic 的 join queries 來達成與 RDBMS 一樣 join 兩張 table 的效果。</p>
 <span id="more"></span>
 
-<p>在 RDBMS 中，透過正規化的方式將大表分成多個小表，並再透過 join 的方式將它們結合在一起。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>在 RDBMS 中，透過正規化的方式將大表分成多個小表，並再透過 join 的方式將它們結合在一起。</p>
 <p>然而在 Elastic 中，反而是建議 **反正規化 (Denomornize)**，因為這樣帶來的效益對 ES 而言會更好，雖然反正規化會讓空間使用上的效益不佳，但通常 ES 都不會被拿來當作主要的資料庫，而是會為了追求效能兒犧牲空間。</p>
 <blockquote>
 <p>雖然 ES 並不能做到像 RDBMS 的 join，但還是能達到一些簡易的 document join。</p>
@@ -388,7 +388,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%A9%A2-nested-objects"><span class="nav-number">1.1.</span> <span class="nav-text">查詢 nested objects</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Inner-hits"><span class="nav-number">1.2.</span> <span class="nav-text">Inner hits</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Document-relationships-%E7%9A%84-mappings"><span class="nav-number">1.3.</span> <span class="nav-text">Document relationships 的 mappings</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Query-by-parent-ID"><span class="nav-number">1.4.</span> <span class="nav-text">Query by parent ID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Query-child-doc-by-parent"><span class="nav-number">1.5.</span> <span class="nav-text">Query child doc by parent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Query-parents-by-child"><span class="nav-number">1.6.</span> <span class="nav-text">Query parents by child</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multi-level-relation"><span class="nav-number">1.7.</span> <span class="nav-text">Multi-level relation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Terms-lookup-mechanism"><span class="nav-number">1.8.</span> <span class="nav-text">Terms lookup mechanism</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Join-limitation"><span class="nav-number">1.9.</span> <span class="nav-text">Join limitation</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">2.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AD%A3%E6%96%87"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%A9%A2-nested-objects"><span class="nav-number">2.1.</span> <span class="nav-text">查詢 nested objects</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Inner-hits"><span class="nav-number">2.2.</span> <span class="nav-text">Inner hits</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Document-relationships-%E7%9A%84-mappings"><span class="nav-number">2.3.</span> <span class="nav-text">Document relationships 的 mappings</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Query-by-parent-ID"><span class="nav-number">2.4.</span> <span class="nav-text">Query by parent ID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Query-child-doc-by-parent"><span class="nav-number">2.5.</span> <span class="nav-text">Query child doc by parent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Query-parents-by-child"><span class="nav-number">2.6.</span> <span class="nav-text">Query parents by child</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multi-level-relation"><span class="nav-number">2.7.</span> <span class="nav-text">Multi-level relation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Terms-lookup-mechanism"><span class="nav-number">2.8.</span> <span class="nav-text">Terms lookup mechanism</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Join-limitation"><span class="nav-number">2.9.</span> <span class="nav-text">Join limitation</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -404,7 +404,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -417,7 +417,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

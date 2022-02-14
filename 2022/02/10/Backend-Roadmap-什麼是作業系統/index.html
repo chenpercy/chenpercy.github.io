@@ -21,22 +21,22 @@
     var CONFIG = {"hostname":"chenpercy.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="繼上次發文到現在又過了好長的一段時間，從準備研究所到現在研究所畢業了，也到了找工作的年紀。大部分的應屆畢業生要先煩惱的都應該是當兵，但是我提早當完了(雖然也不能算是當兵)，有空再來分享當兵的過程吧，畢竟也才短短十二天也不能算是什麼心得文。 究竟要不要先當兵，我覺得也見仁見智，只不過畢業後才當兵最困擾人的，大概就是大多公司都不找還沒當兵的人(除非神到公司願意遇聘)，但…  其實都很難說拉，其實找工作">
+  <meta name="description" content="前言這篇文章是新的系列，主要來探討Backend Roadmap 的每一條支線。 最近在網路上看到了有人整理了各種工程師的 Roadmap，裡面不外乎包含了 前端工程師、後端工程師，這兩個職位在台灣也是很常見的職位，對於想要半路出家轉職為工程師的人來說是非常好的讀物!! 此外，也建議身為工程師的各位可以去看看自己還缺少了哪些知識。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="long time no see...">
-<meta property="og:url" content="https://chenpercy.github.io/2018/09/20/longtimenosee/index.html">
+<meta property="og:title" content="Backend Roadmap - 什麼是作業系統?">
+<meta property="og:url" content="https://chenpercy.github.io/2022/02/10/Backend-Roadmap-%E4%BB%80%E9%BA%BC%E6%98%AF%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1/index.html">
 <meta property="og:site_name" content="Percy&#39;s blog">
-<meta property="og:description" content="繼上次發文到現在又過了好長的一段時間，從準備研究所到現在研究所畢業了，也到了找工作的年紀。大部分的應屆畢業生要先煩惱的都應該是當兵，但是我提早當完了(雖然也不能算是當兵)，有空再來分享當兵的過程吧，畢竟也才短短十二天也不能算是什麼心得文。 究竟要不要先當兵，我覺得也見仁見智，只不過畢業後才當兵最困擾人的，大概就是大多公司都不找還沒當兵的人(除非神到公司願意遇聘)，但…  其實都很難說拉，其實找工作">
+<meta property="og:description" content="前言這篇文章是新的系列，主要來探討Backend Roadmap 的每一條支線。 最近在網路上看到了有人整理了各種工程師的 Roadmap，裡面不外乎包含了 前端工程師、後端工程師，這兩個職位在台灣也是很常見的職位，對於想要半路出家轉職為工程師的人來說是非常好的讀物!! 此外，也建議身為工程師的各位可以去看看自己還缺少了哪些知識。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://vignette.wikia.nocookie.net/evchk/images/a/ad/Chancenotmine.jpeg/revision/latest/scale-to-width-down/350?cb=20111027164947">
-<meta property="article:published_time" content="2018-09-19T17:50:32.000Z">
-<meta property="article:modified_time" content="2021-11-23T09:31:20.572Z">
+<meta property="og:image" content="https://chenpercy.github.io/2022/02/10/Backend-Roadmap-%E4%BB%80%E9%BA%BC%E6%98%AF%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1/os1.png">
+<meta property="article:published_time" content="2022-02-10T04:01:14.000Z">
+<meta property="article:modified_time" content="2022-02-14T09:09:40.418Z">
 <meta property="article:author" content="Percy Chen">
-<meta property="article:tag" content="murmur">
+<meta property="article:tag" content="OS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://vignette.wikia.nocookie.net/evchk/images/a/ad/Chancenotmine.jpeg/revision/latest/scale-to-width-down/350?cb=20111027164947">
+<meta name="twitter:image" content="https://chenpercy.github.io/2022/02/10/Backend-Roadmap-%E4%BB%80%E9%BA%BC%E6%98%AF%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1/os1.png">
 
-<link rel="canonical" href="https://chenpercy.github.io/2018/09/20/longtimenosee/">
+<link rel="canonical" href="https://chenpercy.github.io/2022/02/10/Backend-Roadmap-%E4%BB%80%E9%BA%BC%E6%98%AF%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1/">
 
 
 <script id="page-configurations">
@@ -49,7 +49,7 @@
   };
 </script>
 
-  <title>long time no see... | Percy's blog</title>
+  <title>Backend Roadmap - 什麼是作業系統? | Percy's blog</title>
   
 
 
@@ -165,7 +165,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://chenpercy.github.io/2018/09/20/longtimenosee/">
+    <link itemprop="mainEntityOfPage" href="https://chenpercy.github.io/2022/02/10/Backend-Roadmap-%E4%BB%80%E9%BA%BC%E6%98%AF%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars.githubusercontent.com/u/11907183?s=400&u=a00a5c105d9c91dffcf7b5afb61dcf1ab9794973&v=4">
@@ -178,7 +178,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          long time no see...
+          Backend Roadmap - 什麼是作業系統?
         </h1>
 
         <div class="post-meta">
@@ -188,14 +188,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2018-09-20 01:50:32" itemprop="dateCreated datePublished" datetime="2018-09-20T01:50:32+08:00">2018-09-20</time>
+              <time title="Created: 2022-02-10 12:01:14" itemprop="dateCreated datePublished" datetime="2022-02-10T12:01:14+08:00">2022-02-10</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-11-23 17:31:20" itemprop="dateModified" datetime="2021-11-23T17:31:20+08:00">2021-11-23</time>
+                <time title="Modified: 2022-02-14 17:09:40" itemprop="dateModified" datetime="2022-02-14T17:09:40+08:00">2022-02-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -203,7 +203,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mystory/" itemprop="url" rel="index"><span itemprop="name">mystory</span></a>
+                  <a href="/categories/Engineer/" itemprop="url" rel="index"><span itemprop="name">Engineer</span></a>
                 </span>
             </span>
 
@@ -218,7 +218,28 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>繼上次發文到現在又過了好長的一段時間，從準備研究所到現在研究所畢業了，也到了找工作的年紀。大部分的應屆畢業生要先煩惱的都應該是當兵，但是我提早當完了(雖然也不能算是當兵)，有空再來分享當兵的過程吧，畢竟也才短短十二天也不能算是什麼心得文。 究竟要不要先當兵，我覺得也見仁見智，只不過畢業後才當兵最困擾人的，大概就是大多公司都不找還沒當兵的人(除非神到公司願意<strong>遇聘</strong>)，但… <img src="https://vignette.wikia.nocookie.net/evchk/images/a/ad/Chancenotmine.jpeg/revision/latest/scale-to-width-down/350?cb=20111027164947" alt="Image result for éäºæ©æä¸æ¯å±¬æ¼æç"> 其實都很難說拉，其實找工作時機點真的也蠻重要的，大多數在6、7月(畢業季)或是1、2月(領完年終)，大致上就是你去做別人不想做的工作，別人去接你不想做的工作，一種大風吹的概念。 當然最好的情況是畢業後去申請提早入伍，提早進去、提早結束非文明的生活 最近在四處奔波找工作，也慢慢的瞭解了現在業界上<strong>傳統</strong>資訊業及<strong>新創</strong>資訊業之間的差異，有機會再來分享吧，短短幾句話就可以再打兩篇文章也是有點困擾。 這篇文章就當作是回來wordpress的起手式，原先有許多的文章都已經隱藏起來了，唯獨推甄的文章沒有，雖然已經是兩年前的事情，但是應該多少有幫助。</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>這篇文章是新的系列，主要來探討<a target="_blank" rel="noopener" href="https://roadmap.sh/backend">Backend Roadmap</a> 的每一條支線。</p>
+<p>最近在網路上看到了有人整理了<a target="_blank" rel="noopener" href="https://github.com/kamranahmedse/developer-roadmap">各種工程師的 Roadmap</a>，裡面不外乎包含了 <code>前端工程師</code>、<code>後端工程師</code>，這兩個職位在台灣也是很常見的職位，對於想要半路出家轉職為工程師的人來說是非常好的讀物!! 此外，也建議身為工程師的各位可以去看看自己還缺少了哪些知識。</p>
+<span id="more"></span>
+
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="什麼是作業系統"><a href="#什麼是作業系統" class="headerlink" title="什麼是作業系統?"></a>什麼是作業系統?</h2><ul>
+<li>讓使用者與電腦硬體互相溝通的一個介面。</li>
+<li>用來管理電腦<strong>硬體</strong>及<strong>軟體</strong>的一套系統，透過分配資源(CPU、Memory、Disk) 來管理程式的運行。</li>
+</ul>
+<blockquote>
+<p>其實作業系統本身也是一個程式，但因為其擁有的特殊權限，讓他可以管理其他程序的運行。</p>
+</blockquote>
+<h2 id="作業系統的特色"><a href="#作業系統的特色" class="headerlink" title="作業系統的特色"></a>作業系統的特色</h2><ol>
+<li>multitasking</li>
+<li>virtual memory</li>
+<li>memory protection</li>
+</ol>
+<h3 id="multitasking"><a href="#multitasking" class="headerlink" title="multitasking"></a>multitasking</h3><p>可以讓多個程式同時運行的能力，但同時會衍生另一個問題 - 每個程式都需要用到記憶體，但當切換到運行另一個程式時，我們不能因此就丟掉這個數據。因此，這個問題的解決方法是 <strong>為每個程式分配專屬的內存空間</strong>，但一個程式會使用到的記憶體可能會分成好幾塊，並分配在不同的地方上(導致不是連續的)，這在處理上會相當麻煩，因此，需要使用到<strong>虛擬記憶體</strong>(virtual memory)的技術</p>
+<h3 id="Virtual-Memory"><a href="#Virtual-Memory" class="headerlink" title="Virtual Memory"></a>Virtual Memory</h3><p>對於每一個程式的記憶體而言，都是從 0 開始計算，而實際上對應到的位址是由作業系統來控制。給予每個程式單獨的記憶體位址的另一個好處是，可以讓程式之間互相隔離，避免其中一個壞掉時進而影響到其他的程式，這種行為稱作內存保護(Memory Protection)，這也能用來防止惡意軟體攻擊，避免他們能夠進一步竊取其他記憶體的資料 E.g. 閱讀、修改電子郵件。</p>
+<p>這種行為也稱作<code>動態記憶體分配</code>。<br><img src="os1.png" width="60%" height="60%"></p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=26QPDBe-NB8">Operating Systems: Crash Course Computer Science #18</a></li>
+</ol>
 
     </div>
 
@@ -228,7 +249,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/murmur/" rel="tag"># murmur</a>
+              <a href="/tags/OS/" rel="tag"># OS</a>
           </div>
 
         
@@ -237,13 +258,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2015/11/13/%E5%BF%83%E5%BE%97-105-%E4%B8%AD%E5%A4%AE%E5%A4%A7%E5%AD%B8-%E8%B3%87%E5%B7%A5-%E8%BB%9F%E5%B7%A5%E6%8E%A8%E7%94%84%E5%BF%83%E5%BE%97/" rel="prev" title="105 中央大學 資工 軟工推甄心得">
-      <i class="fa fa-chevron-left"></i> 105 中央大學 資工 軟工推甄心得
+    <a href="/2022/01/18/ElasticSearch-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84-Part11-Aggregation/" rel="prev" title="ElasticSearch 學習紀錄 Part11 - Aggregation">
+      <i class="fa fa-chevron-left"></i> ElasticSearch 學習紀錄 Part11 - Aggregation
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2018/09/26/django-travel-0/" rel="next" title="My Django Travel">
-      My Django Travel <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -303,6 +321,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AD%A3%E6%96%87"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E9%BA%BC%E6%98%AF%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1"><span class="nav-number">2.1.</span> <span class="nav-text">什麼是作業系統?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1%E7%9A%84%E7%89%B9%E8%89%B2"><span class="nav-number">2.2.</span> <span class="nav-text">作業系統的特色</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#multitasking"><span class="nav-number">2.2.1.</span> <span class="nav-text">multitasking</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Virtual-Memory"><span class="nav-number">2.2.2.</span> <span class="nav-text">Virtual Memory</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -459,7 +478,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'chenpercy.github.io',
       owner       : 'chenpercy',
       admin       : ['chenpercy'],
-      id          : 'a943c80acd0a3b287c5765c5984e6e21',
+      id          : 'd47ab35baff8f13bf5f0597a92dc2836',
         language: '',
       distractionFreeMode: true
     });
