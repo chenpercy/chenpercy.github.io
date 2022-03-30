@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="google-site-verification" content="y4xOHLt_gtBKzy6YZ-Jby5vCoJLyOCARXuEuEUPLwzQ" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"chenpercy.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="前言這篇文章主要來紀錄 TypeScript 的學習紀錄">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TypeScript 學習紀錄">
+<meta property="og:url" content="https://chenpercy.github.io/2022/03/23/TypeScript-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/index.html">
+<meta property="og:site_name" content="Percy&#39;s blog">
+<meta property="og:description" content="前言這篇文章主要來紀錄 TypeScript 的學習紀錄">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://chenpercy.github.io/2022/03/23/TypeScript-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/typescript2.png">
+<meta property="og:image" content="https://chenpercy.github.io/2022/03/23/TypeScript-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/typescript1.png">
+<meta property="article:published_time" content="2022-03-23T03:38:06.000Z">
+<meta property="article:modified_time" content="2022-03-30T06:00:13.833Z">
+<meta property="article:author" content="Percy Chen">
+<meta property="article:tag" content="Language">
+<meta property="article:tag" content="TypeScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chenpercy.github.io/2022/03/23/TypeScript-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/typescript2.png">
+
+<link rel="canonical" href="https://chenpercy.github.io/2022/03/23/TypeScript-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>TypeScript 學習紀錄 | Percy's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Percy's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://chenpercy.github.io/2022/03/23/TypeScript-%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/11907183?s=400&u=a00a5c105d9c91dffcf7b5afb61dcf1ab9794973&v=4">
+      <meta itemprop="name" content="Percy Chen">
+      <meta itemprop="description" content="大家好我是 Percy，目前是一名軟體工程師，同時也是 Twitch 遊戲實況主 「薄餡」。這個網站主要分享技術、遊戲、音樂以及一些人生經歷。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Percy's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          TypeScript 學習紀錄
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-03-23 11:38:06" itemprop="dateCreated datePublished" datetime="2022-03-23T11:38:06+08:00">2022-03-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-03-30 14:00:13" itemprop="dateModified" datetime="2022-03-30T14:00:13+08:00">2022-03-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Engineer/" itemprop="url" rel="index"><span itemprop="name">Engineer</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>這篇文章主要來紀錄 TypeScript 的學習紀錄</p>
+<span id="more"></span>
+<p>使用的教材有</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://www.typescripttutorial.net/">TypeScript Tutorial</a></li>
+<li><h1 id="本文"><a href="#本文" class="headerlink" title="本文"></a>本文</h1></li>
+</ol>
+<h2 id="什麼是-TypeScript"><a href="#什麼是-TypeScript" class="headerlink" title="什麼是 TypeScript"></a>什麼是 TypeScript</h2><p>TypeScript 是 JavaScript 的延伸，也就是說，TypeScript 是建立在 JavaScript 之上的<br><img src="typescript2.png" width="30%" height="30%"></p>
+<p>因此我們可以透過 <strong>TypeScript 編譯器</strong> 來讓 TypeScript 程式碼轉換為 JavaScript。</p>
+<img src="typescript1.png" width="60%" height="60%">
+
+
+<p>那我們也可以將一個沒有語法錯誤的 <strong>JS 程式</strong> 視為 <strong>TS 程式</strong>，因此在這兩種語言之間進行轉換，所需要的成本是相對比較低的。</p>
+<p>透過引進 <strong>型別</strong> 到 JS，能夠使開發過程更加嚴謹，進一步減少 Bugs。</p>
+<h3 id="Basic-Type"><a href="#Basic-Type" class="headerlink" title="Basic Type"></a>Basic Type</h3><h4 id="Type-Annotation"><a href="#Type-Annotation" class="headerlink" title="Type Annotation"></a>Type Annotation</h4><p>透過 <strong>Type Annotations</strong> 的方式來表明變數的型態</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let &lt;variable&gt;: &lt;type&gt;: &lt;value&gt;</span><br></pre></td></tr></table></figure>
+
+<p>E.g.</p>
+<p>如果指定錯誤的值，會發生 <code>compiler error</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name: number = <span class="string">&#x27;one&#x27;</span>; <span class="comment">// Type &#x27;string&#x27; is not assignable to type &#x27;number&#x27;.</span></span><br></pre></td></tr></table></figure>
+
+<p>指定一個 sayHello function，並回傳 strin</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> sayHello: <span class="function">(<span class="params">name: string</span>) =&gt;</span> string;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> hello = <span class="function"><span class="keyword">function</span>(<span class="params">name: string</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`Hi <span class="subst">$&#123;name&#125;</span>`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 不符合格式的話，也會發生 compiler error</span></span><br><span class="line"><span class="keyword">const</span> hello = <span class="function"><span class="keyword">function</span>(<span class="params">name: string</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`Hi <span class="subst">$&#123;name&#125;</span>`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Type-Inference"><a href="#Type-Inference" class="headerlink" title="Type Inference"></a>Type Inference</h4><p>與 <code>Type Annotation</code> 相反， <code>Type Inference</code> 是<strong>不表明型態</strong>的方式。</p>
+<p>E.g.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不表明 counter 是一個 number，但透過指定變數的方式可以讓 TypeScript 得知 counter 是一個 number </span></span><br><span class="line"><span class="keyword">let</span> counter = <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Type-Inference-vs-Type-Annotation"><a href="#Type-Inference-vs-Type-Annotation" class="headerlink" title="Type Inference vs. Type Annotation"></a>Type Inference vs. Type Annotation</h4><p>在大多數的實務上都會使用 <code>Type Inference</code>，會使用 <code>Type Annotation</code> 的時機</p>
+<ul>
+<li>先宣告變數而不定義</li>
+<li>希望變數的型態不透過 TypeScript 推論</li>
+<li>當函式回傳 <code>any</code></li>
+</ul>
+<h4 id="Best-common-type-algorithm"><a href="#Best-common-type-algorithm" class="headerlink" title="Best common type algorithm"></a>Best common type algorithm</h4><p>假如今天有一個變數如下，TypeScript 會主動給予該變數一個最適合的變數型態</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> items = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="literal">null</span>]; <span class="comment">// number[]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> items = [<span class="number">0</span>, <span class="number">1</span>, <span class="literal">null</span>, <span class="string">&#x27;Hi&#x27;</span>] <span class="comment">// (number | string)[]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> array = [<span class="keyword">new</span> <span class="built_in">Date</span>(), <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">&#x27;\d+&#x27;</span>)]; <span class="comment">// (RegExp | Date)[]</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Contextual-typing"><a href="#Contextual-typing" class="headerlink" title="Contextual typing"></a>Contextual typing</h4><p>Contextual 代表變數會隨著前後文來決定自己的型態</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">&#x27;click&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(event.button); <span class="comment">// 這裡個 event 變數指的是 MouseEvent</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Compiler Error</span></span><br><span class="line"><span class="comment">// This event is an instance of UIEvent, not a MouseEvent </span></span><br><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">&#x27;scroll&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(event.button); <span class="comment">// Property &#x27;button&#x27; does not exist on type &#x27;Event&#x27;</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Object-Type"><a href="#Object-Type" class="headerlink" title="Object Type"></a>Object Type</h3><p><code>object</code> 代表的是所有非原型(primitive)型別的值。</p>
+<blockquote>
+<p>TypeScript 的原型型別</p>
+<ul>
+<li>number</li>
+<li>bigint</li>
+<li>string</li>
+<li>boolean</li>
+<li>null</li>
+<li>undefined</li>
+<li>sybmol</li>
+</ul>
+</blockquote>
+<p>定義 object 變數</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> employee: object;</span><br><span class="line"></span><br><span class="line">employee = &#123;</span><br><span class="line">    <span class="attr">firstName</span>: <span class="string">&#x27;Percy&#x27;</span>,</span><br><span class="line">    <span class="attr">lastName</span>: <span class="string">&#x27;Chen&#x27;</span>,</span><br><span class="line">    <span class="attr">age</span>: <span class="number">22</span>,</span><br><span class="line">    <span class="attr">jobTitle</span>: <span class="string">&#x27;Web Developer&#x27;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(employee)</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">  firstName: &#x27;John&#x27;,       </span></span><br><span class="line"><span class="comment">  lastName: &#x27;Doe&#x27;,</span></span><br><span class="line"><span class="comment">  age: 25,</span></span><br><span class="line"><span class="comment">  jobTitle: &#x27;Web Developer&#x27;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h4><p>與 <code>object</code> 容易搞混的有是 <code>Object</code>，後者所代表的是所有 objects 所能使用的功能，也就是說在 typescript 中幾乎所有的值都有 <code>toString()</code> &amp; <code>valueOf</code> 這些功能可以使用。 </p>
+<h4 id="empty-type"><a href="#empty-type" class="headerlink" title="empty type {}"></a>empty type {}</h4><p><code>&#123;&#125;</code> 代表一個沒有任何屬性存在內的 object，如果想要存取 object 的值會發生 <code>compiler error</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> vacant: &#123;&#125;;</span><br><span class="line">vacant.name = <span class="string">&#x27;Percy&#x27;</span>; <span class="comment">// Property &#x27;name&#x27; does not exist on type &#x27;&#123;&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="array"><a href="#array" class="headerlink" title="array"></a>array</h3><p><code>array</code> 是一個有序的資料，定義的方法如下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// let arrayName: type[];</span></span><br><span class="line"><span class="keyword">let</span> skills: string[];</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> skills: string[];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 根據定義的方式，skills 被推論為 string array</span></span><br><span class="line">skills = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 若在此時插入一個非字串的值會發生錯誤</span></span><br><span class="line"></span><br><span class="line">skills.push(<span class="number">123</span>) <span class="comment">// Argument of type &#x27;number&#x27; is not assignable to parameter of type &#x27;string&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="properties-amp-methods"><a href="#properties-amp-methods" class="headerlink" title="properties &amp; methods"></a>properties &amp; methods</h4><p>array 有許多 <strong>屬性</strong> 及 <strong>方法</strong> 可以使用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// init</span></span><br><span class="line"><span class="keyword">let</span> series = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// length property</span></span><br><span class="line"><span class="built_in">console</span>.log(series.length) <span class="comment">// 5</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// method</span></span><br><span class="line"><span class="comment">// map</span></span><br><span class="line">series.map(<span class="function"><span class="params">v</span> =&gt;</span> v^<span class="number">2</span>) <span class="comment">// [ 0, 1, 4, 9, 16 ]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// forEach</span></span><br><span class="line"><span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="built_in">console</span>.log(series.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;sum += value&#125;))</span><br><span class="line"></span><br><span class="line"><span class="comment">// reduce 情境比較多，這邊只提供單純的情境</span></span><br><span class="line"><span class="keyword">let</span> tmp = series.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">pre_value, cur_value,</span>)</span>&#123;<span class="keyword">return</span> pre_value+cur_value&#125;, <span class="number">5</span>) <span class="comment">// 15</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="mixed-type"><a href="#mixed-type" class="headerlink" title="mixed type"></a>mixed type</h4><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// typescript 也支援儲存混合型態的 arryr</span></span><br><span class="line"><span class="keyword">let</span> scores = [<span class="string">&#x27;Programming&#x27;</span>, <span class="number">5</span>, <span class="string">&#x27;Software Design&#x27;</span>, <span class="number">4</span>]; </span><br><span class="line"></span><br><span class="line"><span class="comment">// 或是透過混合的方式定義</span></span><br><span class="line"><span class="keyword">let</span> scores2 : (<span class="built_in">string</span> | <span class="built_in">number</span>)[];</span><br><span class="line">scores2 = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="Tuple"><a href="#Tuple" class="headerlink" title="Tuple"></a>Tuple</h3><p>比起 Array，<code>Tuple</code> 多了更多條件</p>
+<ul>
+<li>元素內的數量是固定的</li>
+<li>元素內容的型態不一定要相同</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> skills: [<span class="built_in">number</span>, <span class="built_in">string</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 宣告好的 tuple, 在定義時不能夠將變數放置錯誤的位置，不然會發生 compiler error</span></span><br><span class="line">skills = [<span class="string">&#x27;box&#x27;</span>, <span class="number">5</span>]  <span class="comment">// Compiler error</span></span><br><span class="line">skills = [<span class="number">5</span>, <span class="string">&#x27;box&#x27;</span>]  <span class="comment">// Correct</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Optional-tuple-elements"><a href="#Optional-tuple-elements" class="headerlink" title="Optional tuple elements"></a>Optional tuple elements</h4><p>從 TypeScript 3.0 開始，便可以透過 <code>?</code> 來表示一個 tuple 的內容是非必填的。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> bgColor, <span class="attr">headerColor</span>: [<span class="built_in">number</span>, <span class="built_in">number</span>, <span class="built_in">number</span>, <span class="built_in">number</span>?];</span><br><span class="line">bgColor = [<span class="number">0</span>, <span class="number">255</span>, <span class="number">255</span>, <span class="number">0.5</span>];</span><br><span class="line">headerColor = [<span class="number">0</span>, <span class="number">255</span>, <span class="number">255</span>];  <span class="comment">// 有注意到這裡並沒有定義第四個 number 嗎? </span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Enum"><a href="#Enum" class="headerlink" title="Enum"></a>Enum</h3><p><code>Enum</code> 是一組常數數值，可以用來定義一連串有關聯性的變數</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">enum</span> Month &#123;</span><br><span class="line">    Jan,</span><br><span class="line">    Feb,</span><br><span class="line">    Mar,</span><br><span class="line">    Apr,</span><br><span class="line">    May,</span><br><span class="line">    Jun,</span><br><span class="line">    Jul,</span><br><span class="line">    Aug,</span><br><span class="line">    Sep,</span><br><span class="line">    Oct,</span><br><span class="line">    Nov,</span><br><span class="line">    Dec</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">  &#x27;0&#x27;: &#x27;Jan&#x27;,</span></span><br><span class="line"><span class="comment">  &#x27;1&#x27;: &#x27;Feb&#x27;,</span></span><br><span class="line"><span class="comment">  &#x27;2&#x27;: &#x27;Mar&#x27;,</span></span><br><span class="line"><span class="comment">  &#x27;3&#x27;: &#x27;Apr&#x27;,</span></span><br><span class="line"><span class="comment">  &#x27;4&#x27;: &#x27;May&#x27;,</span></span><br><span class="line"><span class="comment">  &#x27;5&#x27;: &#x27;Jun&#x27;,</span></span><br><span class="line"><span class="comment">  &#x27;6&#x27;: &#x27;Jul&#x27;,</span></span><br><span class="line"><span class="comment">  &#x27;7&#x27;: &#x27;Aug&#x27;,</span></span><br><span class="line"><span class="comment">  &#x27;8&#x27;: &#x27;Sep&#x27;,</span></span><br><span class="line"><span class="comment">  &#x27;9&#x27;: &#x27;Oct&#x27;,</span></span><br><span class="line"><span class="comment">  &#x27;10&#x27;: &#x27;Nov&#x27;,</span></span><br><span class="line"><span class="comment">  &#x27;11&#x27;: &#x27;Dec&#x27;,</span></span><br><span class="line"><span class="comment">  Jan: 0,</span></span><br><span class="line"><span class="comment">  Feb: 1,</span></span><br><span class="line"><span class="comment">  Mar: 2,</span></span><br><span class="line"><span class="comment">  Apr: 3,</span></span><br><span class="line"><span class="comment">  May: 4,</span></span><br><span class="line"><span class="comment">  Jun: 5,</span></span><br><span class="line"><span class="comment">  Jul: 6,</span></span><br><span class="line"><span class="comment">  Aug: 7,</span></span><br><span class="line"><span class="comment">  Sep: 8,</span></span><br><span class="line"><span class="comment">  Oct: 9,</span></span><br><span class="line"><span class="comment">  Nov: 10,</span></span><br><span class="line"><span class="comment">  Dec: 11</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 也可以修改 enum 的起始數值</span></span><br><span class="line"><span class="built_in">enum</span> Month &#123;</span><br><span class="line">    A = <span class="number">5</span>,</span><br><span class="line">    B,</span><br><span class="line">    C,</span><br><span class="line">    D,</span><br><span class="line">    E</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="Any-type"><a href="#Any-type" class="headerlink" title="Any type"></a>Any type</h3><p>如果在宣告的時候沒有給予型態，那 typescript 會透過 <code>type inference</code> 的特性給予這些變數<code>any</code> 的型態。</p>
+<blockquote>
+<p>可以透過修改 <code>tsconfig.json</code> 的 <code>noImplictAny</code> 數值來停用自動賦予 <code>any</code> 的這個特性</p>
+</blockquote>
+<h4 id="any-vs-object"><a href="#any-vs-object" class="headerlink" title="any vs. object"></a>any vs. object</h4><p>使用 <code>any</code> 的情境下，在變數沒有該方法可以呼叫時，也不會出現錯誤訊息；相反的，使用 <code>object</code>，可以提早知道錯誤的資訊。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result: <span class="built_in">any</span>;</span><br><span class="line">result = <span class="number">10.123</span>; </span><br><span class="line"><span class="built_in">console</span>.log(result.toFixed()); <span class="comment">// compile 時不會發生錯誤，會到執行的時候才會出現錯誤資訊</span></span><br><span class="line">result.willExist();</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> result: <span class="built_in">object</span>;</span><br><span class="line">result = <span class="number">10.123</span>; <span class="comment">// Type &#x27;number&#x27; is not assignable to type &#x27;object&#x27;</span></span><br><span class="line"><span class="built_in">console</span>.log(result.toFixed()); <span class="comment">// Property &#x27;toFixed&#x27; does not exist on type &#x27;object&#x27;</span></span><br><span class="line">result.willExist(); <span class="comment">//</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Void"><a href="#Void" class="headerlink" title="Void"></a>Void</h3><p>與 <code>any</code> 剛好相反， <code>void</code> 表示的是沒有任何型態，通常會用來表示不回傳任何值的狀況</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">lo</span>(<span class="params">message: <span class="built_in">string</span></span>): <span class="title">void</span></span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(message)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="never"><a href="#never" class="headerlink" title="never"></a>never</h3><p><code>never</code> 通常被使用來表示回傳的格式中會 <strong>觸發錯誤</strong>。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">raiseError</span>(<span class="params">message: <span class="built_in">string</span></span>): <span class="title">never</span> </span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(message)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 回傳格式若為 Error，則回傳格式則會被推論為 never</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reject</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> raiseError(<span class="string">&#x27;Rejected&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 函式若包含無限 Loop，則格式也會被視為 never</span></span><br><span class="line"><span class="keyword">let</span> loop = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&quot;Hello!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="union"><a href="#union" class="headerlink" title="union"></a>union</h3><p><code>union</code> 用來描述一個變數可能會有多種型態的狀況。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a: <span class="built_in">number</span> | <span class="built_in">string</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="Type-Alias"><a href="#Type-Alias" class="headerlink" title="Type Alias"></a>Type Alias</h3><p><code>type alias</code> 賦予現有的型態新的名字</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// type alias = existingType</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> chars = <span class="built_in">string</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> name: chars;  <span class="comment">// 等同於 let name: string</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// type alias 也可以與 union 結合</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> alphanumeric = <span class="built_in">number</span> | <span class="built_in">string</span>;</span><br><span class="line"><span class="keyword">let</span> value: alphanumeric;</span><br><span class="line">value = <span class="string">&#x27;Percy&#x27;</span>; <span class="comment">// valid</span></span><br><span class="line">value = <span class="number">100</span>; <span class="comment">// valid</span></span><br><span class="line">value = <span class="literal">false</span>; <span class="comment">// Compiler error</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="string-literal-types"><a href="#string-literal-types" class="headerlink" title="string literal types"></a>string literal types</h3><p>透過 <strong>宣告不同的字串</strong> 來達成 <strong>自定義的型態</strong>。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> tax: <span class="string">&#x27;tax&#x27;</span>;</span><br><span class="line"></span><br><span class="line">tax = <span class="string">&#x27;tax&#x27;</span>;</span><br><span class="line">tax = <span class="string">&#x27;tax1&#x27;</span>; <span class="comment">// Type &#x27;&quot;tax1&quot;&#x27; is not assignable to type &#x27;&quot;tax&quot;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> petsound: <span class="string">&#x27;Meow&#x27;</span> | <span class="string">&#x27;woof&#x27;</span></span><br><span class="line"></span><br><span class="line">petsound = <span class="string">&#x27;Meow&#x27;</span>;</span><br><span class="line">petsound = <span class="string">&#x27;woof&#x27;</span>;</span><br><span class="line">petsound = <span class="string">&#x27;woooof&#x27;</span>;  <span class="comment">// Type &#x27;&quot;woooof&quot;&#x27; is not assignable to type &#x27;&quot;Meow&quot; | &quot;woof&quot;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 也可以與 type aliases 做結合</span></span><br><span class="line"><span class="keyword">let</span> anotherpetsound: petsound</span><br></pre></td></tr></table></figure>
+
+<h1 id="Control-Flow-Statements"><a href="#Control-Flow-Statements" class="headerlink" title="Control Flow Statements"></a>Control Flow Statements</h1><h2 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h2><h3 id="Rest-Parameter"><a href="#Rest-Parameter" class="headerlink" title="Rest Parameter"></a>Rest Parameter</h3><p><code>rest parameter</code> 意味著函式的參數可以接受零到多個參數，此外還有以下規定:</p>
+<ul>
+<li>一個函式只能有<strong>一個</strong> rest parameter</li>
+<li>只能出現在參數的最後一個位子</li>
+<li>是一個 <code>array</code> 格式</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">...names: <span class="built_in">string</span>[]</span>): <span class="title">void</span></span>&#123;</span><br><span class="line">    names.forEach(<span class="function">(<span class="params">name</span>)=&gt;</span> <span class="built_in">console</span>.log(name))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fn(<span class="string">&quot;Percy&quot;</span>, <span class="string">&quot;Chen&quot;</span>)</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Percy</span></span><br><span class="line"><span class="comment">Chen</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Classes"><a href="#Classes" class="headerlink" title="Classes"></a>Classes</h2><p>在 ES6 以前，在 JS 中並沒有類別 <code>class</code> 的概念，在 ES6 之後變具備了建立 class 的語法糖</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="attr">firstName</span>: <span class="built_in">string</span>;</span><br><span class="line">    lastName: <span class="built_in">string</span>;</span><br><span class="line">    age: <span class="built_in">number</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params">firstName: <span class="built_in">string</span>, lastName: <span class="built_in">string</span>, age: <span class="built_in">number</span></span>)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.firstName = firstName;</span><br><span class="line">        <span class="built_in">this</span>.lastName = lastName;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="title">getHelloMessage</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">`Welcome <span class="subst">$&#123;<span class="built_in">this</span>.lastName&#125;</span> <span class="subst">$&#123;<span class="built_in">this</span>.firstName&#125;</span>!`</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> person = <span class="keyword">new</span> Person(<span class="string">&#x27;Percy&#x27;</span>, <span class="string">&#x27;Chen&#x27;</span>, <span class="number">27</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person.getHelloMessage());</span><br></pre></td></tr></table></figure>
+
+<h3 id="Access-Modifiers"><a href="#Access-Modifiers" class="headerlink" title="Access Modifiers"></a>Access Modifiers</h3><p>存取修飾符 <code>Access Modifiers</code> 是用來修改類別的 屬性 &amp; 方法 的<strong>能見度</strong>，在 TypeScript 中提供了三種</p>
+<ul>
+<li>private</li>
+<li>protected</li>
+<li>public(預設)</li>
+</ul>
+<h4 id="private"><a href="#private" class="headerlink" title="private"></a>private</h4><p><code>private</code> 將能見度限制在類別內，意味著類別以外的人是不能夠存取的。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="attr">firstName</span>: <span class="built_in">string</span>;</span><br><span class="line">    lastName: <span class="built_in">string</span>;</span><br><span class="line">    age: <span class="built_in">number</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params">firstName: <span class="built_in">string</span>, lastName: <span class="built_in">string</span>, age: <span class="built_in">number</span></span>)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.firstName = firstName;</span><br><span class="line">        <span class="built_in">this</span>.lastName = lastName;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="title">getHelloMessage</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">`Welcome <span class="subst">$&#123;<span class="built_in">this</span>.lastName&#125;</span> <span class="subst">$&#123;<span class="built_in">this</span>.firstName&#125;</span>!`</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> person = <span class="keyword">new</span> Person(<span class="string">&#x27;Percy&#x27;</span>, <span class="string">&#x27;Chen&#x27;</span>, <span class="number">27</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person.fiirstname); <span class="comment">// compiler error</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="public"><a href="#public" class="headerlink" title="public"></a>public</h4><p><code>public</code> 的屬性可以在任何地方被存取，在沒有使用修飾符的狀況下，預設都是使用 public。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    (<span class="keyword">public</span>) firstName: <span class="built_in">string</span>;</span><br><span class="line">    (<span class="keyword">public</span>) lastName: <span class="built_in">string</span>;</span><br><span class="line">    (<span class="keyword">public</span>) age: <span class="built_in">number</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params">firstName: <span class="built_in">string</span>, lastName: <span class="built_in">string</span>, age: <span class="built_in">number</span></span>)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.firstName = firstName;</span><br><span class="line">        <span class="built_in">this</span>.lastName = lastName;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="title">getHelloMessage</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">`Welcome <span class="subst">$&#123;<span class="built_in">this</span>.lastName&#125;</span> <span class="subst">$&#123;<span class="built_in">this</span>.firstName&#125;</span>!`</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> person = <span class="keyword">new</span> Person(<span class="string">&#x27;Percy&#x27;</span>, <span class="string">&#x27;Chen&#x27;</span>, <span class="number">27</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person.getHelloMessage());</span><br></pre></td></tr></table></figure>
+
+<h4 id="protected"><a href="#protected" class="headerlink" title="protected"></a>protected</h4><p><code>protected</code> 是允許 <strong>自己類別</strong> 以及 <strong>子類別存取</strong> 的屬性。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Person &#123;</span><br><span class="line">    (procted) firstName: string;</span><br><span class="line">    (public) lastName: string;</span><br><span class="line">    (public) age: number;</span><br><span class="line"></span><br><span class="line">    constructor(firstName: string, lastName: string, age: number) &#123;</span><br><span class="line">        this.firstName = firstName;</span><br><span class="line">        this.lastName = lastName;</span><br><span class="line">        this.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    getHelloMessage() &#123;</span><br><span class="line">        return `Welcome $&#123;this.lastName&#125; $&#123;this.firstName&#125;!`</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let person = new Person(&#x27;Percy&#x27;, &#x27;Chen&#x27;, 27);</span><br><span class="line"></span><br><span class="line">console.log(person.getHelloMessage());</span><br></pre></td></tr></table></figure>
+
+<h3 id="readonly"><a href="#readonly" class="headerlink" title="readonly"></a>readonly</h3><p>透過 <code>readonly</code> 讓類別屬性不可變(immutable)，與 <code>const</code> 的差異在於，前者用在類別屬性，後者用在一般變數。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person2</span> </span>&#123;</span><br><span class="line">    <span class="keyword">readonly</span> birthDate: <span class="built_in">Date</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params">birthDate: <span class="built_in">Date</span></span>)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.birthDate = birthDate;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">上面的內容可以合併成</span></span><br><span class="line"><span class="comment">class Person2&#123;</span></span><br><span class="line"><span class="comment">    constructor(readonly birthDate: Date) &#123;</span></span><br><span class="line"><span class="comment">        this.birthDate = birthDate;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> person2 = <span class="keyword">new</span> Person2(<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2010</span>, <span class="number">10</span>, <span class="number">25</span>));</span><br><span class="line">person2.birthDate = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2002</span>, <span class="number">1</span>, <span class="number">2</span>); <span class="comment">// Cannot assign to &#x27;birthDate&#x27; because it is a read-only property</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="Static-properties"><a href="#Static-properties" class="headerlink" title="Static properties"></a>Static properties</h3><p><code>static</code> 在整個類別及其實例中共用。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StaticBox</span></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> initCount: <span class="built_in">number</span> = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="function">        <span class="keyword">private</span> length: <span class="built_in">number</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">        <span class="keyword">private</span> width: <span class="built_in">number</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">        <span class="keyword">private</span> color: <span class="built_in">string</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">    </span>)</span>&#123;</span><br><span class="line">        StaticBox.initCount+=<span class="number">1</span> </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> getCounter(): <span class="built_in">number</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> StaticBox.initCount;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> box1: StaticBox = <span class="keyword">new</span> StaticBox(<span class="number">3</span>, <span class="number">4</span>, <span class="string">&#x27;Blue&#x27;</span>)</span><br><span class="line"><span class="built_in">console</span>.log(StaticBox.getCounter())</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> box2: StaticBox = <span class="keyword">new</span> StaticBox(<span class="number">1</span>, <span class="number">2</span>, <span class="string">&#x27;Red&#x27;</span>)</span><br><span class="line"><span class="built_in">console</span>.log(StaticBox.getCounter())</span><br></pre></td></tr></table></figure>
+
+<h2 id="Interface"><a href="#Interface" class="headerlink" title="Interface"></a>Interface</h2><p>將不同的變數透過 <code>interface</code> 的方式包裝</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// this type annotation is difficult to read</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFullName</span>(<span class="params">person: &#123;</span></span></span><br><span class="line"><span class="params"><span class="function">    firstName: <span class="built_in">string</span>;</span></span></span><br><span class="line"><span class="params"><span class="function">    lastName: <span class="built_in">string</span>;</span></span></span><br><span class="line"><span class="params"><span class="function">&#125;</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;person.firstName&#125;</span> <span class="subst">$&#123;person.lastName&#125;</span>`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> person4 = &#123;</span><br><span class="line">    <span class="attr">firstName</span>: <span class="string">&#x27;John&#x27;</span>,</span><br><span class="line">    <span class="attr">lastName</span>: <span class="string">&#x27;Doe&#x27;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(getFullName(person4));</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Person3 &#123;</span><br><span class="line">    <span class="attr">firstName</span>: <span class="built_in">string</span>;</span><br><span class="line">    lastName: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFullName2</span>(<span class="params">person: Person3</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;person.firstName&#125;</span> <span class="subst">$&#123;person.lastName&#125;</span>`</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> me = &#123;</span><br><span class="line">    <span class="attr">firstName</span>: <span class="string">&#x27;Percy&#x27;</span>,</span><br><span class="line">    <span class="attr">lastName</span>: <span class="string">&#x27;Chen&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(getFullName2(me))</span><br></pre></td></tr></table></figure>
+
+<h4 id="function-types"><a href="#function-types" class="headerlink" title="function types"></a>function types</h4><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> IsTeeanger &#123;</span><br><span class="line">    (age: <span class="built_in">number</span>): <span class="built_in">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> checkIsTeen: IsTeeanger;</span><br><span class="line"></span><br><span class="line">checkIsTeen = <span class="function"><span class="keyword">function</span> (<span class="params">age: <span class="built_in">number</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> age &lt; <span class="number">18</span> ? <span class="string">&quot;YES&quot;</span> : <span class="string">&quot;NO&quot;</span> </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 參數不一定要符合原本的設定，這裡把 age 改成 anotherage 是可行的</span></span><br><span class="line">checkIsTeen = <span class="function"><span class="keyword">function</span>(<span class="params">anotherage: <span class="built_in">number</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> anotherage &lt; <span class="number">18</span> ? <span class="string">&quot;YES&quot;</span> : <span class="string">&quot;NO&quot;</span> </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(checkIsTeen(<span class="number">45</span>))</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="class-types"><a href="#class-types" class="headerlink" title="class types"></a>class types</h4><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Json &#123;</span><br><span class="line">    toVolume(): <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Box</span> <span class="title">implements</span> <span class="title">Json</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params"><span class="keyword">private</span> length: <span class="built_in">number</span>, <span class="keyword">private</span> width: <span class="built_in">number</span></span>)</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    toVolume(): <span class="built_in">number</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.length * <span class="built_in">this</span>.width</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> box = <span class="keyword">new</span> Box(<span class="number">5</span>, <span class="number">12</span>);</span><br><span class="line"><span class="built_in">console</span>.log(box.toVolume());</span><br></pre></td></tr></table></figure>
+
+<h1 id="Advanced-Types"><a href="#Advanced-Types" class="headerlink" title="Advanced Types"></a>Advanced Types</h1><h2 id="Intersection-Type"><a href="#Intersection-Type" class="headerlink" title="Intersection Type"></a>Intersection Type</h2><p><code>intersection type</code> 代表的是透過多個型態組合成一個新型態。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// tpyeAB 會繼承 typeA + typeB</span></span><br><span class="line"><span class="keyword">type</span> typeAB = typeA &amp; typeB;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Person &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="built_in">string</span>;</span><br><span class="line">    sex: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> Info &#123;</span><br><span class="line">    <span class="attr">address</span>: <span class="built_in">string</span>;</span><br><span class="line">    identity: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// resident1, resident2 都是由 Person, Info 組成，但組成的方式規則不同</span></span><br><span class="line"><span class="comment">// resident1 的內容不能缺少，但 resident2 的內容可以缺少</span></span><br><span class="line"><span class="keyword">type</span> resident1 = Person &amp; Info</span><br><span class="line"><span class="keyword">type</span> resident2 = Person | Info </span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> man: resident1 = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;Percy&quot;</span>,</span><br><span class="line">    <span class="attr">sex</span>: <span class="string">&quot;Man&quot;</span>,</span><br><span class="line">    <span class="attr">address</span>: <span class="string">&quot;Taipei&quot;</span>,</span><br><span class="line">    <span class="attr">identity</span>: <span class="string">&quot;haha&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> man2: resident2 = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;Percy&quot;</span>,</span><br><span class="line">    <span class="attr">address</span>: <span class="string">&quot;Taipei&quot;</span>,</span><br><span class="line">    <span class="attr">identity</span>: <span class="string">&quot;haha&quot;</span> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>型態的順序不影響 type intersection</p>
+</blockquote>
+<h1 id="Modules"><a href="#Modules" class="headerlink" title="Modules"></a>Modules</h1><p>透過模組化 <code>modules</code>，可以將 A 檔案的內容傳遞給 B 檔案做使用。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// my_modules.ts</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params"><span class="built_in">number</span>: <span class="built_in">number</span></span>): <span class="title">boolean</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">number</span> % <span class="number">2</span> == <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">        </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123;foo&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// another_modules.ts</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> mod <span class="keyword">from</span> <span class="string">&quot;./my_module&quot;</span>; </span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(mod.foo(<span class="number">5</span>)) <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Language/" rel="tag"># Language</a>
+              <a href="/tags/TypeScript/" rel="tag"># TypeScript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/03/17/Node-js-%E5%AD%B8%E7%BF%92%E8%A8%98%E9%8C%84/" rel="prev" title="Node.js 學習記錄">
+      <i class="fa fa-chevron-left"></i> Node.js 學習記錄
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%AC%E6%96%87"><span class="nav-number">2.</span> <span class="nav-text">本文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E9%BA%BC%E6%98%AF-TypeScript"><span class="nav-number">2.1.</span> <span class="nav-text">什麼是 TypeScript</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-Type"><span class="nav-number">2.1.1.</span> <span class="nav-text">Basic Type</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Type-Annotation"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">Type Annotation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Type-Inference"><span class="nav-number">2.1.1.2.</span> <span class="nav-text">Type Inference</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Type-Inference-vs-Type-Annotation"><span class="nav-number">2.1.1.3.</span> <span class="nav-text">Type Inference vs. Type Annotation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Best-common-type-algorithm"><span class="nav-number">2.1.1.4.</span> <span class="nav-text">Best common type algorithm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Contextual-typing"><span class="nav-number">2.1.1.5.</span> <span class="nav-text">Contextual typing</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-Type"><span class="nav-number">2.1.2.</span> <span class="nav-text">Object Type</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Object"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">Object</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#empty-type"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">empty type {}</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#array"><span class="nav-number">2.1.3.</span> <span class="nav-text">array</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#properties-amp-methods"><span class="nav-number">2.1.3.1.</span> <span class="nav-text">properties &amp; methods</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mixed-type"><span class="nav-number">2.1.3.2.</span> <span class="nav-text">mixed type</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tuple"><span class="nav-number">2.1.4.</span> <span class="nav-text">Tuple</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Optional-tuple-elements"><span class="nav-number">2.1.4.1.</span> <span class="nav-text">Optional tuple elements</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Enum"><span class="nav-number">2.1.5.</span> <span class="nav-text">Enum</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Any-type"><span class="nav-number">2.1.6.</span> <span class="nav-text">Any type</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#any-vs-object"><span class="nav-number">2.1.6.1.</span> <span class="nav-text">any vs. object</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Void"><span class="nav-number">2.1.7.</span> <span class="nav-text">Void</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#never"><span class="nav-number">2.1.8.</span> <span class="nav-text">never</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#union"><span class="nav-number">2.1.9.</span> <span class="nav-text">union</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Type-Alias"><span class="nav-number">2.1.10.</span> <span class="nav-text">Type Alias</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#string-literal-types"><span class="nav-number">2.1.11.</span> <span class="nav-text">string literal types</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Control-Flow-Statements"><span class="nav-number">3.</span> <span class="nav-text">Control Flow Statements</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Functions"><span class="nav-number">3.1.</span> <span class="nav-text">Functions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Rest-Parameter"><span class="nav-number">3.1.1.</span> <span class="nav-text">Rest Parameter</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Classes"><span class="nav-number">3.2.</span> <span class="nav-text">Classes</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Access-Modifiers"><span class="nav-number">3.2.1.</span> <span class="nav-text">Access Modifiers</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#private"><span class="nav-number">3.2.1.1.</span> <span class="nav-text">private</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#public"><span class="nav-number">3.2.1.2.</span> <span class="nav-text">public</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#protected"><span class="nav-number">3.2.1.3.</span> <span class="nav-text">protected</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#readonly"><span class="nav-number">3.2.2.</span> <span class="nav-text">readonly</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Static-properties"><span class="nav-number">3.2.3.</span> <span class="nav-text">Static properties</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Interface"><span class="nav-number">3.3.</span> <span class="nav-text">Interface</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#function-types"><span class="nav-number">3.3.0.1.</span> <span class="nav-text">function types</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#class-types"><span class="nav-number">3.3.0.2.</span> <span class="nav-text">class types</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Advanced-Types"><span class="nav-number">4.</span> <span class="nav-text">Advanced Types</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intersection-Type"><span class="nav-number">4.1.</span> <span class="nav-text">Intersection Type</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Modules"><span class="nav-number">5.</span> <span class="nav-text">Modules</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Percy Chen"
+      src="https://avatars.githubusercontent.com/u/11907183?s=400&u=a00a5c105d9c91dffcf7b5afb61dcf1ab9794973&v=4">
+  <p class="site-author-name" itemprop="name">Percy Chen</p>
+  <div class="site-description" itemprop="description">大家好我是 Percy，目前是一名軟體工程師，同時也是 Twitch 遊戲實況主 「薄餡」。這個網站主要分享技術、遊戲、音樂以及一些人生經歷。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/chenpercy" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;chenpercy" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:abc2344666@gmail.com" title="E-Mail → mailto:abc2344666@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.twitch.tv/thincookie" title="Twitch → https:&#x2F;&#x2F;www.twitch.tv&#x2F;thincookie" rel="noopener" target="_blank"><i class="fab fa-twitch fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.youtube.com/channel/UCYLmTHiQIuqAjNgmBBcyJPA" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;channel&#x2F;UCYLmTHiQIuqAjNgmBBcyJPA" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.instagram.com/percy.chen_/" title="Instagram → https:&#x2F;&#x2F;www.instagram.com&#x2F;percy.chen_&#x2F;" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Percy Chen</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'a8e1604a92eb820e3b5a',
+      clientSecret: '040dc268ccfd17d864c619929032dd61d18e8950',
+      repo        : 'chenpercy.github.io',
+      owner       : 'chenpercy',
+      admin       : ['chenpercy'],
+      id          : 'd26004dede8c0a4ea90c8ab46d6733c9',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

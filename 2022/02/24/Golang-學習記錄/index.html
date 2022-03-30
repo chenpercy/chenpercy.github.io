@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="google-site-verification" content="y4xOHLt_gtBKzy6YZ-Jby5vCoJLyOCARXuEuEUPLwzQ" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"chenpercy.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="前言這篇文章主要來紀錄 Golang 的學習紀錄，使用的教材是碁峰出版的精通 Go 程式設計。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Golang 學習記錄">
+<meta property="og:url" content="https://chenpercy.github.io/2022/02/24/Golang-%E5%AD%B8%E7%BF%92%E8%A8%98%E9%8C%84/index.html">
+<meta property="og:site_name" content="Percy&#39;s blog">
+<meta property="og:description" content="前言這篇文章主要來紀錄 Golang 的學習紀錄，使用的教材是碁峰出版的精通 Go 程式設計。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-02-24T01:37:43.000Z">
+<meta property="article:modified_time" content="2022-03-23T02:45:55.239Z">
+<meta property="article:author" content="Percy Chen">
+<meta property="article:tag" content="Language">
+<meta property="article:tag" content="Golang">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://chenpercy.github.io/2022/02/24/Golang-%E5%AD%B8%E7%BF%92%E8%A8%98%E9%8C%84/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Golang 學習記錄 | Percy's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Percy's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://chenpercy.github.io/2022/02/24/Golang-%E5%AD%B8%E7%BF%92%E8%A8%98%E9%8C%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/11907183?s=400&u=a00a5c105d9c91dffcf7b5afb61dcf1ab9794973&v=4">
+      <meta itemprop="name" content="Percy Chen">
+      <meta itemprop="description" content="大家好我是 Percy，目前是一名軟體工程師，同時也是 Twitch 遊戲實況主 「薄餡」。這個網站主要分享技術、遊戲、音樂以及一些人生經歷。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Percy's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Golang 學習記錄
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-02-24 09:37:43" itemprop="dateCreated datePublished" datetime="2022-02-24T09:37:43+08:00">2022-02-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-03-23 10:45:55" itemprop="dateModified" datetime="2022-03-23T10:45:55+08:00">2022-03-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Engineer/" itemprop="url" rel="index"><span itemprop="name">Engineer</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>這篇文章主要來紀錄 Golang 的學習紀錄，使用的教材是碁峰出版的精通 Go 程式設計。</p>
+<span id="more"></span>
+
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="程式結構"><a href="#程式結構" class="headerlink" title="程式結構"></a>程式結構</h2><h3 id="名稱"><a href="#名稱" class="headerlink" title="名稱"></a>名稱</h3><p>Go 的命名原則: 以 <strong>字母</strong> or <strong>底線</strong> 開頭</p>
+<p>Go 有若干個關鍵字，只能用於語法中使用，因此他們不能拿來當作名稱!</p>
+<blockquote>
+<p>break, default, func, interface, select, case, defer, go, map, struct, chan, else, goto, package, switch, const, fallthrough, if, range, type, continue, for, import, return, var</p>
+</blockquote>
+<p>但是 Go 有一些 <strong>預先宣告</strong> 的名稱，是可以拿來重新宣告的!</p>
+<blockquote>
+<p>常數: true false iota nil<br>  型別: int uint float bool byte rune string error<br>  函式: make len cap new append copy close delete complex real imag panic recover</p>
+</blockquote>
+<p>名稱的第一個字母用來決定可見度是否可以跨越套件的邊界，如果名稱是以大寫字母開頭，在套件外是可見且可存取的，比方說 fmt 的 <strong>Print</strong>，套件的名稱本身永遠是小寫。</p>
+<p>名稱長度無限制，但 Golang 的 convention 是習慣使用 <strong>短名稱</strong> 及 **駱駝式(Camel Case)**。比方說，變數 i 比 theLoopIndex 常見，或是習慣使用 <code>aNewFunc</code> 而不是 <code>a_new_func</code>。</p>
+<p>但這一切都是使用習慣，在業界大多是還是以部門的開發文化為主!</p>
+<h3 id="宣告"><a href="#宣告" class="headerlink" title="宣告"></a>宣告</h3><p>主要有四種宣告 <code>var</code> <code>const</code> <code>type</code> <code>func</code>，以下面的程式碼來做介紹</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import &quot;fmt&quot;</span><br><span class="line"></span><br><span class="line">const boilingF = 212.0</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	var f = boilingF</span><br><span class="line">	var c = (f - 32) * 5 / 9</span><br><span class="line">	fmt.Printf(&quot;boiling point = %gF or %gC\n&quot;, f, c)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>boilingF</code> 屬於<strong>套件層級</strong>的宣告，而 f, c 屬於<strong>區域宣告</strong>。</p>
+<h3 id="變數"><a href="#變數" class="headerlink" title="變數"></a>變數</h3><p>透過 <code>var</code> 來宣告特定型別的變數，格式為 <code>var name type = expression</code>，其中 <code>型別</code> 或是 <code>= expression</code> 兩者之一是可以省略的，但不能全部省略，如果省略型別，則會以 expression 來決定型別，如果省略 expression，則會以型別的<strong>零值</strong>來決定數值。</p>
+<p>E.g.</p>
+<p>數字 -&gt; 0<br>布林值 &gt; false<br>字串 &gt; “”<br>interface &amp; 參考型別 &gt; nil<br>集合型別(array &amp; struct) &gt; 所有元素 or 欄位均為零值</p>
+<blockquote>
+<p>零值的機制是為了確保變數有個正確定義的值，Go 沒有所謂的為定義變數，這麼做是為了不額外花心力的前提下確保合理的邊界條件。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var s string</span><br><span class="line">fmt.Println(s) // &quot;&quot;</span><br></pre></td></tr></table></figure>
+
+<h4 id="短變數宣告"><a href="#短變數宣告" class="headerlink" title="短變數宣告"></a>短變數宣告</h4><p>以省略 var 的方式來宣告變數，格式為 <code>name:=expression</code>，其中 name 的型別是由 expression 來決定。</p>
+<blockquote>
+<p>短變數宣告中，必須至少宣告一個新的變數</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a, b := 1, 2</span><br><span class="line"></span><br><span class="line">a, b := 2, 3  # Wrong -&gt; no new variables on left side of :=</span><br><span class="line"></span><br><span class="line">b, c := 3, 4  # Right</span><br></pre></td></tr></table></figure>
+
+<h3 id="指標"><a href="#指標" class="headerlink" title="指標"></a>指標</h3><p>指的是變數的<strong>位址</strong>，因此指標是所儲存值的位置。 並非每一個數值都會有位址，但 **每個變數都會有位址<br>**! 因此我們可以使用指標來讀取或是修改這些值</p>
+<blockquote>
+<p>組合型別變數 - struct or array 的元素也都具有位址</p>
+</blockquote>
+<p>任何型別的指標，其零值皆為 nil。指標也可以拿來互相比較，當兩個指標在同一個變數或均為 nil 才會相等。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var x, y int</span><br><span class="line">fmt.Println(&amp;x == &amp;x, &amp;x == &amp;y, &amp;x == nil, nil == nil) // true, false, false</span><br><span class="line"></span><br><span class="line"># nil 不能拿來與自己比較</span><br><span class="line">fmt.Println(nil == nil) # cannot compare nil == nil (operator == not defined for untyped nil)</span><br></pre></td></tr></table></figure>
+
+
+<p>在函式中可以安全的回傳區域變數的位址，對於 foo 內的區域變數 v，在呼叫完畢之後，還是能透過指標來指向他</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	foo := func() *int &#123;</span><br><span class="line">		v := 1</span><br><span class="line">		return &amp;v</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	fmt.Println(foo() == foo()) # false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var n = flag.Bool(&quot;n&quot;, false, &quot;omit trailing newline&quot;)</span><br><span class="line">var sep = flag.String(&quot;s&quot;, &quot; &quot;, &quot;seperator&quot;)</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	flag.Parse()</span><br><span class="line">	fmt.Print(strings.Join(flag.Args(), *sep))</span><br><span class="line">	if !*n &#123;</span><br><span class="line">		fmt.Println()</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="new-函式"><a href="#new-函式" class="headerlink" title="new 函式"></a>new 函式</h3><p>透過內建的 <code>new</code> 來建構變數，建構一個 x型別的不具名變數**，也就是說 new(x) 是以 x 的零值去做初始化，並回傳 *x 型別的位址。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">p := new(int)</span><br><span class="line">fmt.Println(*p) // 0</span><br><span class="line">*p = 3  // let p be 3</span><br><span class="line">fmt.Println(*p) // 3</span><br></pre></td></tr></table></figure>
+
+<h3 id="變數生命週期"><a href="#變數生命週期" class="headerlink" title="變數生命週期"></a>變數生命週期</h3><h2 id="指派"><a href="#指派" class="headerlink" title="指派"></a>指派</h2><p>透過 <strong>指派</strong> 讓變數所保存的值進一步變化</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = 1  // 具名變數</span><br><span class="line">*flag = false // 間接變數</span><br><span class="line">person.name = &quot;bob&quot; // struct 欄位</span><br><span class="line">count[x] = count[x] * scale // 陣列</span><br></pre></td></tr></table></figure>
+
+<h3 id="資料組的指派"><a href="#資料組的指派" class="headerlink" title="資料組的指派"></a>資料組的指派</h3><p>可以在同一行中去指派多個資料</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x, y = y, x</span><br><span class="line">a[i], a[j] = a[j], a[i]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	fmt.Println(gcd(484, 48))  //  22</span><br><span class="line">	fmt.Println(fib(10)) // 55</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 以 gcd 來做說明</span><br><span class="line">func gcd(x, y int) int &#123;</span><br><span class="line">        // golang 沒有 while，但可以用 `for ...  `這種方式達成</span><br><span class="line">	for y != 0 &#123;</span><br><span class="line">		x, y = y, x%y // 將 x,y 做處理後繼續找小公倍數</span><br><span class="line">	&#125;</span><br><span class="line">	return x</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># Fibonocci series</span><br><span class="line">func fib(n int) int &#123;</span><br><span class="line">	x, y := 0, 1</span><br><span class="line">	for i := 0; i &lt; n; i++ &#123;</span><br><span class="line">		x, y = y, x+y</span><br><span class="line">	&#125;</span><br><span class="line">	return x</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="型別宣告"><a href="#型別宣告" class="headerlink" title="型別宣告"></a>型別宣告</h2><p>type 賦予固有的型別一個新的 <strong>具名型別</strong>，格式為 <code>type name underlying-type</code>，通常 name 會以大寫的方式呈現。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// 以 float64 去定義新的型別 Celsius, Fahrenheit </span><br><span class="line">type Celsius float64</span><br><span class="line">type Fahrenheit float64</span><br><span class="line"></span><br><span class="line">const (</span><br><span class="line">	AbsoluteZeroC Celsius = -273.15</span><br><span class="line">	FreezingC     Celsius = 0</span><br><span class="line">	BoilingC      Celsius = 100</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	fmt.Println(CTof(72))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func CTof(c Celsius) Fahrenheit &#123; return Fahrenheit(c*9/5 + 32) &#125;</span><br><span class="line"></span><br><span class="line">func FTof(f Fahrenheit) Celsius &#123; return Celsius(f-32) * 5 / 9 &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="基本資料型別"><a href="#基本資料型別" class="headerlink" title="基本資料型別"></a>基本資料型別</h2><p>Go 的型別分成四種:</p>
+<ol>
+<li>基本型別: 數字、字串、布林</li>
+<li>集合型別: 陣列、Struct</li>
+<li>參考型別: 指標、slice、map、函式、channel</li>
+<li>介面型別</li>
+</ol>
+<h3 id="整數"><a href="#整數" class="headerlink" title="整數"></a>整數</h3><p>可以分成 <em>正負號</em> &amp; <strong>無正負號</strong> &amp; 四種大小 8、16、32、64 的組合。</p>
+<p>要注意不同型別的變數不能做運算</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var apples int32 = 1</span><br><span class="line">var oranges int16 = 2</span><br><span class="line">var compote int = apples + oranges // 編譯錯誤</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="複數"><a href="#複數" class="headerlink" title="複數"></a>複數</h3><p>有 <code>complex64</code> &amp; <code>complex128</code> 這兩種。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var x complex128 = complex(1, 2)</span><br><span class="line">var y complex128 = complex(3, 4)</span><br><span class="line">x_y := x * y</span><br><span class="line">fmt.Println(x_y) # (-5+10i)</span><br><span class="line">fmt.Println((real(x_y))) # -5</span><br><span class="line">fmt.Println(imag(x_y)) # 10</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="字串"><a href="#字串" class="headerlink" title="字串"></a>字串</h3><p>嘗試存取範圍外的位元組會導致 panic</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">str := &quot;a pine apple&quot;</span><br><span class="line">fmt.Println(str[len(str)])</span><br></pre></td></tr></table></figure>
+
+<p>可以透過 slice 來取得特定範圍的字串內容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">str := &quot;a pine apple&quot;</span><br><span class="line">fmt.Println(str[2:]) // pine apple</span><br><span class="line">fmt.Println(str[:5]) // a pin</span><br><span class="line">fmt.Println(str[:]) // a pine apple</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="常數"><a href="#常數" class="headerlink" title="常數"></a>常數</h3><p>常數宣告可以指定 <strong>型別</strong> 與 值，在沒有明確指定型別時，型別由運算式的右手邊決定。</p>
+<h4 id="iota-常數產生器"><a href="#iota-常數產生器" class="headerlink" title="iota 常數產生器"></a>iota 常數產生器</h4><p>const 宣告可使用 <code>iota 常數產生器</code>，這種型別也可以稱為列舉 <code>Enum</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">type Weekday int</span><br><span class="line">const (</span><br><span class="line">	Sunday Weekday = iota</span><br><span class="line">	Monday</span><br><span class="line">	Tuesday</span><br><span class="line">	Wednesday</span><br><span class="line">	Thursday</span><br><span class="line">	Friday</span><br><span class="line">	Saturday</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"># 0, 1, 2, 3, 4, 5, 6</span><br><span class="line">fmt.Println(Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">type Flags int</span><br><span class="line">const (</span><br><span class="line">	FlagUp Flags = 1 &lt;&lt; iota</span><br><span class="line">	FlagBroadcast</span><br><span class="line">	FlagLoopback</span><br><span class="line">	FlagPointToPoint</span><br><span class="line">	FlagMulticast</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">// 1 2 4 8 16</span><br><span class="line">fmt.Println(FlagUp, FlagBroadcast, FlagLoopback, FlagPointToPoint, FlagMulticast)</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="組合型別"><a href="#組合型別" class="headerlink" title="組合型別"></a>組合型別</h2><h3 id="陣列"><a href="#陣列" class="headerlink" title="陣列"></a>陣列</h3><p>是由零到多個特定型別元素所組成的，因為它是固定長度，故陣列很少在 Go 中使用，反而可變大縮小的 slice 更有彈性。</p>
+<p>陣列變數以元素型別的零值來做初始化</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var arr1 [3]int = [3]int&#123;1, 2, 3&#125;</span><br><span class="line">var arr2 [3]int = [3]int&#123;1, 2&#125;</span><br><span class="line">fmt.Println(arr2[2])</span><br></pre></td></tr></table></figure>
+
+<p>也可以使用 <code>...</code> 來代替長度</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr2 := [...]int&#123;1, 2, 3&#125;</span><br></pre></td></tr></table></figure>
+
+<p>陣列的長度大小也是用來判定型別是否相同的一部分因素，因此，<code>[3]int</code> 與 <code>[4]int</code> 兩者是不同的型別。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr1 := [3]int&#123;1, 2, 3&#125;</span><br><span class="line">arr1 = [4]int&#123;2, 3, 4, 5&#125; // 不能將 [4]int 指派給 [3]int</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">建立 int 型別的新型別 Currency</span><br><span class="line">const (</span><br><span class="line">    USD Currency = iota</span><br><span class="line">    EUR</span><br><span class="line">    GBP</span><br><span class="line">    RMB</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">symbol := [...]string&#123;USB: &quot;$&quot;, EUR: &quot;€&quot;, GBP: &quot;£&quot;, RMB: &quot;¥&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="雜湊表-map"><a href="#雜湊表-map" class="headerlink" title="雜湊表 map"></a>雜湊表 map</h3><p>雜湊表是一個無排序的 key/value 群組，在這群組中的鍵值必定唯一，其表示方法為 <code>map[K]V</code>，其中 K &amp; V 所分別代表的是鍵與值的型別。所有鍵 &amp; 值 均為同一型別，但兩者不一定要同一型別。</p>
+<h2 id="Goroutine-amp-Channel"><a href="#Goroutine-amp-Channel" class="headerlink" title="Goroutine &amp; Channel"></a>Goroutine &amp; Channel</h2><p>每個並行執行的都被稱為 <code>goroutine</code></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Language/" rel="tag"># Language</a>
+              <a href="/tags/Golang/" rel="tag"># Golang</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/02/22/Python-Graphql-%E5%B7%A5%E5%85%B7-ariadne/" rel="prev" title="Python Graphql 工具 - ariadne">
+      <i class="fa fa-chevron-left"></i> Python Graphql 工具 - ariadne
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/03/17/Node-js-%E5%AD%B8%E7%BF%92%E8%A8%98%E9%8C%84/" rel="next" title="Node.js 學習記錄">
+      Node.js 學習記錄 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AD%A3%E6%96%87"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%8B%E5%BC%8F%E7%B5%90%E6%A7%8B"><span class="nav-number">2.1.</span> <span class="nav-text">程式結構</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8D%E7%A8%B1"><span class="nav-number">2.1.1.</span> <span class="nav-text">名稱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%A3%E5%91%8A"><span class="nav-number">2.1.2.</span> <span class="nav-text">宣告</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%8A%E6%95%B8"><span class="nav-number">2.1.3.</span> <span class="nav-text">變數</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9F%AD%E8%AE%8A%E6%95%B8%E5%AE%A3%E5%91%8A"><span class="nav-number">2.1.3.1.</span> <span class="nav-text">短變數宣告</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E6%A8%99"><span class="nav-number">2.1.4.</span> <span class="nav-text">指標</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#new-%E5%87%BD%E5%BC%8F"><span class="nav-number">2.1.5.</span> <span class="nav-text">new 函式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%8A%E6%95%B8%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F"><span class="nav-number">2.1.6.</span> <span class="nav-text">變數生命週期</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E6%B4%BE"><span class="nav-number">2.2.</span> <span class="nav-text">指派</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B3%87%E6%96%99%E7%B5%84%E7%9A%84%E6%8C%87%E6%B4%BE"><span class="nav-number">2.2.1.</span> <span class="nav-text">資料組的指派</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9E%8B%E5%88%A5%E5%AE%A3%E5%91%8A"><span class="nav-number">2.3.</span> <span class="nav-text">型別宣告</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E5%9E%8B%E5%88%A5"><span class="nav-number">2.4.</span> <span class="nav-text">基本資料型別</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E6%95%B8"><span class="nav-number">2.4.1.</span> <span class="nav-text">整數</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A4%87%E6%95%B8"><span class="nav-number">2.4.2.</span> <span class="nav-text">複數</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E4%B8%B2"><span class="nav-number">2.4.3.</span> <span class="nav-text">字串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E6%95%B8"><span class="nav-number">2.4.4.</span> <span class="nav-text">常數</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#iota-%E5%B8%B8%E6%95%B8%E7%94%A2%E7%94%9F%E5%99%A8"><span class="nav-number">2.4.4.1.</span> <span class="nav-text">iota 常數產生器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%84%E5%90%88%E5%9E%8B%E5%88%A5"><span class="nav-number">2.5.</span> <span class="nav-text">組合型別</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%99%A3%E5%88%97"><span class="nav-number">2.5.1.</span> <span class="nav-text">陣列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%9C%E6%B9%8A%E8%A1%A8-map"><span class="nav-number">2.5.2.</span> <span class="nav-text">雜湊表 map</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Goroutine-amp-Channel"><span class="nav-number">2.6.</span> <span class="nav-text">Goroutine &amp; Channel</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Percy Chen"
+      src="https://avatars.githubusercontent.com/u/11907183?s=400&u=a00a5c105d9c91dffcf7b5afb61dcf1ab9794973&v=4">
+  <p class="site-author-name" itemprop="name">Percy Chen</p>
+  <div class="site-description" itemprop="description">大家好我是 Percy，目前是一名軟體工程師，同時也是 Twitch 遊戲實況主 「薄餡」。這個網站主要分享技術、遊戲、音樂以及一些人生經歷。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/chenpercy" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;chenpercy" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:abc2344666@gmail.com" title="E-Mail → mailto:abc2344666@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.twitch.tv/thincookie" title="Twitch → https:&#x2F;&#x2F;www.twitch.tv&#x2F;thincookie" rel="noopener" target="_blank"><i class="fab fa-twitch fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.youtube.com/channel/UCYLmTHiQIuqAjNgmBBcyJPA" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;channel&#x2F;UCYLmTHiQIuqAjNgmBBcyJPA" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.instagram.com/percy.chen_/" title="Instagram → https:&#x2F;&#x2F;www.instagram.com&#x2F;percy.chen_&#x2F;" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Percy Chen</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'a8e1604a92eb820e3b5a',
+      clientSecret: '040dc268ccfd17d864c619929032dd61d18e8950',
+      repo        : 'chenpercy.github.io',
+      owner       : 'chenpercy',
+      admin       : ['chenpercy'],
+      id          : '28116cde9be17e2a018a151f46385a54',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
